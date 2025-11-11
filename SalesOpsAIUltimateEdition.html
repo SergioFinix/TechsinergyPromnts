@@ -1,0 +1,3948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Techsinergy | t-ayudo</title>
+
+<!-- Embedded default settings block (used for Universal Agent embedding) -->
+<script id="embedded-settings" type="application/json">
+{
+  "companyName": "",
+  "productService": "",
+  "industry": "b2b_saas",
+  "targetMarket": "Mid-market & Enterprise B2B",
+  "icp": "Perfil ideal del cliente: [sector], [tamaño], [problemas], [presupuesto]",
+  "salesModel": "Direct Sales\nInside Sales\nChannel/Partner",
+  "avgDealSize": 50000,
+  "salesCycleLength": 90,
+  "regions": "North America",
+  "fiscalYearEnd": "December 31",
+  "quotaPeriod": "Quarterly",
+  "pipelineCoverageTarget": 3,
+  "winRateTarget": 25,
+  "forecastAccuracyTarget": 90,
+  "quotaAttainmentTarget": 100,
+  "currency": "$",
+  "tone": "strategic",
+  "primaryGoal": "Increase win rate and forecast accuracy",
+  "okrs": "Q Goals: Pipeline 3x coverage; Win rate ≥ 25%; Forecast accuracy ≥ 90%; Quota attainment 100%",
+  "salesMethodology": "MEDDIC, Challenger, Venta de Soluciones",
+  "crmSystem": "Salesforce",
+  "salesStack": "Outreach; Gong; LinkedIn Sales Navigator",
+  "analyticsStack": "Tableau; Clari; InsightSquared",
+  "automationStack": "Zapier; Make; n8n",
+  "contentPillars": "Pitch Decks\nCase Studies\nROI Calculators\nBattle Cards",
+  "industryTemplate": "b2b_saas",
+  "selectedPlaybooks": [
+    "Pipeline Review Framework",
+    "Forecasting Methodology",
+    "Deal Review Checklist",
+    "Territory Planning Model",
+    "Sales Process Stages"
+  ]
+}
+</script>
+
+<style>
+  :root{
+    --bg:#0f0a1a; --card:#1a1625; --card-2:#151020;
+    --text:#f0e6ff; --muted:#a78bfa; --accent:#8b5cf6; --accent-2:#c4b5fd;
+    --danger:#ef4444; --ok:#10b981; --warning:#f59e0b; --info:#06b6d4; --shadow:0 10px 30px rgba(0,0,0,.3);
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:radial-gradient(1200px 600px at 15% -10%,#6b21a844,transparent),radial-gradient(800px 500px at 120% 10%,#7c3aed33,transparent),var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.45}
+  a{color:var(--accent);text-decoration:none}
+  .app{display:flex;flex-direction:column;gap:20px;padding:20px;min-height:100vh}
+  .app-wrapper{display:grid;grid-template-columns:1fr;gap:20px;flex:1}
+  .sidebar{display:none}
+  .sidebar::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,181,253,.2),transparent);pointer-events:none}
+  .top-header{position:sticky;top:0;z-index:100;width:100%;margin-bottom:20px;background:rgba(26,22,37,.5);backdrop-filter:blur(28px) saturate(200%);border:1px solid rgba(139,92,246,.25);border-radius:20px;padding:16px 24px;box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(196,181,253,.15),inset 0 -1px 0 rgba(0,0,0,.1);position:relative;overflow:hidden}
+  .top-header::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,181,253,.4),rgba(167,139,250,.5),rgba(196,181,253,.4),transparent);pointer-events:none}
+  .top-header::after{content:'';position:absolute;top:-50%;right:-10%;width:200px;height:200px;background:radial-gradient(circle,rgba(139,92,246,.2),transparent);pointer-events:none;animation:headerGlow 8s ease-in-out infinite}
+  @keyframes headerGlow{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.8;transform:scale(1.1)}}
+  .brand-header{display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;z-index:1}
+  .brand-header-left{display:flex;align-items:center;gap:16px;flex:1}
+  .hamburger-menu{width:44px;height:44px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;cursor:pointer;padding:8px;border-radius:12px;background:rgba(139,92,246,.15);border:1px solid rgba(167,139,250,.3);transition:all .3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden}
+  .hamburger-menu:hover{background:rgba(139,92,246,.2);border-color:rgba(196,181,253,.4);transform:scale(1.05)}
+  .hamburger-menu.active{background:rgba(139,92,246,.25);border-color:rgba(196,181,253,.5)}
+  .hamburger-menu span{width:22px;height:2px;background:linear-gradient(90deg,#e9d5ff,#c4b5fd);border-radius:2px;transition:all .3s cubic-bezier(0.4,0,0.2,1);box-shadow:0 1px 3px rgba(139,92,246,.4)}
+  .hamburger-menu.active span:nth-child(1){transform:rotate(45deg) translate(7px,7px)}
+  .hamburger-menu.active span:nth-child(2){opacity:0;transform:translateX(-10px)}
+  .hamburger-menu.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px)}
+  .mobile-menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,10,26,.85);backdrop-filter:blur(8px);z-index:200;opacity:0;visibility:hidden;transition:all .3s cubic-bezier(0.4,0,0.2,1)}
+  .mobile-menu-overlay.active{opacity:1;visibility:visible}
+  .mobile-menu{position:fixed;top:0;right:0;width:320px;max-width:85vw;height:100%;background:rgba(26,22,37,.95);backdrop-filter:blur(32px) saturate(200%);border-left:1px solid rgba(139,92,246,.3);box-shadow:-8px 0 32px rgba(0,0,0,.3),inset 1px 0 0 rgba(196,181,253,.15);z-index:201;transform:translateX(100%);transition:transform .4s cubic-bezier(0.4,0,0.2,1);overflow-y:auto;display:flex;flex-direction:column;padding:24px}
+  .mobile-menu.active{transform:translateX(0)}
+  .mobile-menu-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(196,181,253,.2)}
+  .mobile-menu-header h2{font-size:18px;font-weight:700;background:linear-gradient(135deg,#e9d5ff,#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0}
+  .mobile-menu-close{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(139,92,246,.15);border:1px solid rgba(167,139,250,.3);color:var(--text);cursor:pointer;transition:all .2s;font-size:20px}
+  .mobile-menu-close:hover{background:rgba(139,92,246,.25);transform:rotate(90deg)}
+  .mobile-nav{display:flex;flex-direction:column;gap:8px;flex:1}
+  .mobile-nav button{text-align:left;border:none;padding:14px 18px;border-radius:14px;background:rgba(139,92,246,.12);border:1px solid rgba(167,139,250,.2);color:var(--text);cursor:pointer;transition:all .3s cubic-bezier(0.4,0,0.2,1);display:flex;align-items:center;gap:14px;font-size:15px;line-height:1.3;position:relative;overflow:hidden;font-weight:500}
+  .mobile-nav button::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:0;background:linear-gradient(180deg,var(--accent),#a78bfa);border-radius:0 3px 3px 0;transition:height .3s}
+  .mobile-nav button:hover{background:rgba(139,92,246,.18);border-color:rgba(196,181,253,.35);transform:translateX(6px)}
+  .mobile-nav button:hover::before{height:70%}
+  .mobile-nav button.active{background:rgba(139,92,246,.22);border-color:rgba(196,181,253,.45);box-shadow:0 2px 12px rgba(139,92,246,.2),inset 0 1px 0 rgba(196,181,253,.2)}
+  .mobile-nav button.active::before{height:80%}
+  .mobile-nav button span:first-child{font-size:20px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .mobile-nav button span:first-child svg{width:20px;height:20px;stroke:var(--accent-2);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 3px rgba(139,92,246,.5));transition:all .3s}
+  .mobile-nav button:hover span:first-child svg{stroke:#e9d5ff;transform:scale(1.1)}
+  .mobile-nav button.active span:first-child svg{stroke:#c4b5fd;filter:drop-shadow(0 2px 6px rgba(139,92,246,.6))}
+  .mobile-menu-footer{margin-top:auto;padding-top:24px;border-top:1px solid rgba(196,181,253,.2);font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:8px}
+  .brand-header .logo-container{position:relative;width:52px;height:52px;flex-shrink:0}
+  .brand-header .logo{width:100%;height:100%;display:grid;place-items:center;border-radius:16px;background:linear-gradient(135deg,var(--accent),#a78bfa);box-shadow:0 6px 20px rgba(139,92,246,.5),inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(0,0,0,.1);position:relative;overflow:hidden}
+  .brand-header .logo::before{content:'';position:absolute;inset:0;border-radius:16px;padding:2px;background:linear-gradient(135deg,rgba(196,181,253,.7),rgba(167,139,250,.5),transparent);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;-webkit-mask-composite:xor;opacity:.8}
+  .brand-header .logo::after{content:'';position:absolute;inset:2px;border-radius:14px;background:radial-gradient(circle at 30% 30%,rgba(196,181,253,.4),transparent);pointer-events:none}
+  .brand-header .logo svg{width:28px;height:28px;filter:drop-shadow(0 2px 6px rgba(139,92,246,.4));position:relative;z-index:2;animation:logoFloat 3s ease-in-out infinite}
+  @keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+  .brand-content{flex:1;min-width:0;position:relative}
+  .brand-content::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:2px;height:30px;background:linear-gradient(180deg,transparent,rgba(196,181,253,.6),transparent);border-radius:2px}
+  .brand-header h1{font-size:22px;margin:0;line-height:1.2;letter-spacing:.3px;font-weight:800;background:linear-gradient(135deg,#e9d5ff,#c4b5fd,#e9d5ff);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite;padding-left:16px}
+  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  .brand-header .muted{color:var(--muted);font-size:12px;margin-top:2px;font-weight:600;padding-left:16px;opacity:.9}
+  .muted{color:var(--muted);font-size:11px;margin-top:2px;font-weight:500}
+  .nav{display:flex;flex-direction:column;gap:6px;margin-top:8px;flex:1}
+  .nav button{text-align:left;border:none;padding:12px 16px;border-radius:14px;background:transparent;border:1px solid transparent;color:var(--text);cursor:pointer;transition:all .3s cubic-bezier(0.4,0,0.2,1);display:flex;align-items:center;gap:12px;font-size:14px;line-height:1.3;position:relative;overflow:hidden;font-weight:500}
+  .nav button::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:0;background:linear-gradient(180deg,var(--accent),#a78bfa);border-radius:0 3px 3px 0;transition:height .3s cubic-bezier(0.4,0,0.2,1)}
+  .nav button:hover{background:rgba(139,92,246,.12);border-color:rgba(167,139,250,.25);transform:translateX(4px)}
+  .nav button:hover::before{height:60%}
+  .nav button.active{background:rgba(139,92,246,.18);border-color:rgba(196,181,253,.35);box-shadow:0 2px 8px rgba(139,92,246,.15),inset 0 1px 0 rgba(196,181,253,.15)}
+  .nav button.active::before{height:70%}
+  .nav button span:first-child{font-size:18px;width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;filter:drop-shadow(0 1px 2px rgba(139,92,246,.4))}
+  .nav button.active span:first-child{transform:scale(1.1)}
+  .footer{margin-top:auto;font-size:11px;color:var(--muted);padding:16px 0 8px 0;border-top:1px solid rgba(196,181,253,.2);display:flex;flex-direction:column;gap:8px}
+  .footer .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(196,181,253,.3),transparent);margin:4px 0}
+  .status-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border-radius:12px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-left:auto}
+  .status-badge.complete{background:rgba(16,185,129,.15);color:var(--ok);border:1px solid var(--ok)}
+  .status-badge.incomplete{background:rgba(245,158,11,.15);color:var(--warning);border:1px solid var(--warning)}
+
+  .main{display:flex;flex-direction:column;gap:16px}
+  .panel{background:linear-gradient(180deg,var(--card),#1a1530);border:1px solid #2d1b3d;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+  .panel h2{margin-top:0;font-size:22px}
+  .panel h3{margin-top:1.2em;font-size:18px}
+  .panel h4{margin-top:1em;font-size:16px}
+  .hero{text-align:center;padding:40px 20px;background:linear-gradient(180deg,rgba(139,92,246,.12),rgba(196,181,253,.06),transparent);border-radius:var(--radius);margin-bottom:32px}
+  .hero h1{font-size:34px;margin:0 0 12px 0;line-height:1.2}
+  .hero p{font-size:18px;color:var(--muted);margin:0}
+
+  .agents-showcase{display:flex;flex-direction:column;gap:16px;margin:32px 0}
+  .agent-feature{display:flex;align-items:center;gap:24px;background:rgba(26,22,37,.6);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(139,92,246,.25);border-radius:20px;padding:28px;transition:all .4s cubic-bezier(0.4,0,0.2,1);cursor:pointer;position:relative;overflow:hidden}
+  .agent-feature::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(196,181,253,.15),transparent);transition:left .6s}
+  .agent-feature:hover::before{left:100%}
+  .agent-feature:hover{border-color:rgba(196,181,253,.4);background:rgba(26,22,37,.85);transform:translateX(8px);box-shadow:0 8px 32px rgba(139,92,246,.18)}
+  .agent-feature-icon-orb{flex-shrink:0;width:90px;height:90px;display:flex;align-items:center;justify-content:center;position:relative;border-radius:50%}
+  .agent-feature-icon-orb::before{content:'';position:absolute;inset:-8px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(139,92,246,.35),rgba(196,181,253,.2),transparent 70%);opacity:.6;animation:orbPulse 3s ease-in-out infinite;z-index:0}
+  .agent-feature-icon-orb::after{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,rgba(139,92,246,.25) 90deg,transparent 180deg,rgba(196,181,253,.18) 270deg,transparent 360deg);opacity:0;transition:opacity .5s,transform .5s;transform:rotate(0deg)}
+  .agent-feature:hover .agent-feature-icon-orb::after{opacity:1;transform:rotate(360deg);animation:orbRotate 2s linear infinite}
+  .agent-feature-icon-core{width:72px;height:72px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 35%,rgba(139,92,246,.2),rgba(26,22,37,.95));border-radius:50%;border:2px solid rgba(196,181,253,.35);box-shadow:inset 0 2px 10px rgba(196,181,253,.15),0 0 20px rgba(139,92,246,.15),0 4px 15px rgba(0,0,0,.3);position:relative;z-index:1;transition:all .4s cubic-bezier(0.4,0,0.2,1)}
+  .agent-feature:hover .agent-feature-icon-core{transform:scale(1.1);border-color:rgba(196,181,253,.5);box-shadow:inset 0 2px 15px rgba(196,181,253,.2),0 0 30px rgba(139,92,246,.2),0 8px 25px rgba(0,0,0,.4)}
+  .agent-feature-icon{width:38px;height:38px;position:relative;z-index:2;transition:transform .3s;display:flex;align-items:center;justify-content:center}
+  .agent-feature-icon svg{width:100%;height:100%;stroke:var(--accent-2);fill:none;stroke-width:2;filter:drop-shadow(0 2px 6px rgba(139,92,246,.3))}
+  .agent-feature:hover .agent-feature-icon{transform:scale(1.15)}
+  .agent-feature:hover .agent-feature-icon svg{stroke:#c4b5fd;filter:drop-shadow(0 2px 8px rgba(139,92,246,.4))}
+  @keyframes orbPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.1);opacity:.8}}
+  @keyframes orbRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  .agent-feature-content{flex:1;display:flex;flex-direction:column;gap:8px}
+  .agent-feature-header{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .agent-feature h3{margin:0;font-size:22px;font-weight:700;background:linear-gradient(135deg,#e9d5ff,#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .agent-feature-experience{font-size:12px;color:var(--ok);background:rgba(16,185,129,.15);padding:4px 10px;border-radius:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+  .agent-feature-description{color:var(--muted);font-size:15px;line-height:1.6;margin:0}
+  .agent-feature-expert{font-size:13px;color:var(--accent-2);font-weight:600;margin-top:4px}
+  .agent-feature-action{flex-shrink:0;opacity:0;transform:translateX(-10px);transition:all .3s}
+  .agent-feature:hover .agent-feature-action{opacity:1;transform:translateX(0)}
+
+  .btn{appearance:none;border:none;cursor:pointer;padding:10px 14px;border-radius:10px;background:#2d1b3d;color:var(--text);border:1px solid #4c1d6a;transition:transform .06s ease,background .15s ease,border .15s ease;font-size:14px}
+  .btn:hover{transform:translateY(-1px);border-color:#8b5cf6}
+  .btn.primary{background:linear-gradient(135deg,var(--accent),#a78bfa);color:#fff;border:none;font-weight:700}
+  .btn.secondary{background:#2d1b3d;border-color:#4c1d6a}
+  .btn.danger{background:#7f1d1d;border-color:#991b1b}
+  .btn.small{padding:6px 10px;font-size:12px}
+
+  body.auth-locked #appShell{display:none;}
+  body.auth-locked #wizardOverlay{display:none!important;}
+  .auth-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:32px;background:rgba(15,10,26,.92);backdrop-filter:blur(14px);z-index:9998;transition:opacity .3s ease,visibility .3s ease;}
+  body:not(.auth-locked) .auth-overlay{opacity:0;visibility:hidden;pointer-events:none;}
+  .auth-card{width:min(420px,100%);background:linear-gradient(180deg,var(--card),var(--card-2));border:1px solid rgba(139,92,246,.35);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:20px;}
+  .auth-card header h2{margin:0;font-size:24px;}
+  .auth-card header p{margin:6px 0 0 0;}
+  .auth-tabs{display:flex;gap:8px;}
+  .auth-tabs .tab-button{flex:1;justify-content:center;}
+  .auth-form{display:none;flex-direction:column;gap:14px;}
+  .auth-form.active{display:flex;}
+  .auth-feedback{display:none;font-size:13px;border-radius:10px;padding:10px 12px;background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.35);}
+  .auth-feedback.error{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.4);}
+  .auth-footer{font-size:12px;color:var(--muted);text-align:center;}
+  #authGate button.disabled,
+  #authGate button:disabled{opacity:.6;cursor:wait;}
+
+  .row{display:grid;gap:16px;grid-template-columns:repeat(12,1fr)}
+  .col-12{grid-column:span 12}
+  .col-9{grid-column:span 9}
+  .col-8{grid-column:span 8}
+  .col-6{grid-column:span 6}
+  .col-4{grid-column:span 4}
+  .col-3{grid-column:span 3}
+
+  label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+  .input,textarea,select{width:100%;box-sizing:border-box;padding:10px 12px;border-radius:12px;border:1px solid #4c1d6a;background:#1a1530;color:var(--text);outline:none;font-size:14px;resize:vertical}
+
+  .tabs{display:flex;gap:8px;border-bottom:2px solid #4c1d6a;margin-bottom:24px;flex-wrap:wrap}
+  .tab-button{background:transparent;border:none;color:var(--muted);padding:12px 20px;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;font-size:14px;font-weight:500}
+  .tab-button:hover{color:var(--text)}
+  .tab-button.active{color:#e9d5ff;border-bottom-color:var(--accent)}
+  .tab-button{display:flex;align-items:center;gap:10px}
+  .tab-button .tab-icon{width:28px;height:28px;border-radius:10px;background:rgba(139,92,246,.15);border:1px solid rgba(167,139,250,.25);display:grid;place-items:center;transition:all .3s}
+  .tab-button .tab-icon svg{width:18px;height:18px;stroke:var(--accent-2);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:all .3s}
+  .tab-button:hover .tab-icon{background:rgba(139,92,246,.25);border-color:rgba(196,181,253,.4);transform:translateY(-1px)}
+  .tab-button:hover .tab-icon svg{stroke:#e9d5ff}
+  .tab-button.active .tab-icon{background:var(--accent);border-color:rgba(196,181,253,.6);box-shadow:0 4px 12px rgba(139,92,246,.35)}
+  .tab-button.active .tab-icon svg{stroke:#fff}
+  .tab-button .tab-label{white-space:nowrap}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+
+  .copy-wrap{position:relative}
+  .copy-btn{position:absolute;top:10px;right:10px;font-size:12px;padding:6px 8px;border-radius:8px;background:#2d1b3d;border:1px solid #4c1d6a;color:var(--text);cursor:pointer;z-index:10}
+  pre{white-space:pre-wrap;word-wrap:break-word;background:#0f0a1a;border:1px dashed #4c1d6a;padding:12px;border-radius:12px;overflow:auto;max-height:55vh}
+  code{background:#0f0a1a;padding:2px 6px;border-radius:4px;font-size:13px}
+
+  .note{font-size:12px;color:var(--muted)}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,#4c1d6a,transparent);margin:12px 0}
+  .list{margin:0;padding-left:18px}
+  .list li{margin:6px 0}
+  .info-box{background:#1a1530;border:1px solid var(--info);border-radius:12px;padding:16px;margin:12px 0}
+  .warning-box{background:#1a1530;border:1px solid var(--warning);border-radius:12px;padding:16px;margin:12px 0}
+  .help-text{background:#1a1530;border-left:3px solid var(--info);padding:12px;border-radius:8px;margin:12px 0;font-size:13px}
+  .card{background:#1a1530;border:1px solid #4c1d6a;border-radius:14px;padding:14px;margin:10px 0}
+  .checkbox-group{display:flex;align-items:center;gap:8px;margin:8px 0}
+  .checkbox-group input[type=checkbox]{width:auto;margin:0}
+
+  .wizard-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,10,26,.95);z-index:10000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+  .wizard-overlay.active{display:flex}
+  .wizard-container{max-width:650px;width:92%;background:linear-gradient(180deg,var(--card),var(--card-2));border:2px solid var(--accent);border-radius:var(--radius);padding:40px;box-shadow:var(--shadow)}
+  .wizard-header{text-align:center;margin-bottom:32px}
+  .wizard-header h2{color:var(--accent-2);margin:0 0 8px 0;font-size:28px}
+  .wizard-progress{display:flex;justify-content:center;gap:12px;margin:24px 0}
+  .wizard-dot{width:12px;height:12px;border-radius:50%;background:#4c1d6a;transition:all .3s}
+  .wizard-dot.active{background:var(--accent);transform:scale(1.2)}
+  .wizard-dot.complete{background:var(--ok)}
+  .wizard-step{display:none}
+  .wizard-step.active{display:block}
+  .wizard-buttons{display:flex;gap:12px;margin-top:32px}
+  .wizard-buttons button{flex:1}
+  .template-grid{display:grid;gap:12px;margin:16px 0;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .template-card{background:#1a1530;border:2px solid #4c1d6a;border-radius:12px;padding:16px;cursor:pointer;transition:all .2s}
+  .template-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .template-card.selected{border-color:var(--accent);background:#5b21b6}
+  .template-card h4{margin:0 0 8px 0;color:#c4b5fd}
+  .template-card p{margin:0;font-size:13px;color:var(--muted)}
+
+  .advanced-toggle{background:#1a1530;border:1px solid #4c1d6a;border-radius:12px;padding:12px 16px;margin:16px 0;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all .2s}
+  .advanced-toggle:hover{border-color:var(--accent)}
+  .advanced-toggle-icon{transition:transform .3s}
+  .advanced-toggle.expanded .advanced-toggle-icon{transform:rotate(180deg)}
+  .advanced-content{display:none;margin-top:12px}
+  .advanced-content.visible{display:block}
+  .quality-checklist{background:#1a1530;border-left:3px solid var(--ok);padding:16px;border-radius:8px;margin:12px 0}
+  .quality-checklist h4{margin-top:0;color:var(--ok)}
+
+  .integration-section{margin:20px 0}
+  .step-number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:14px;margin-right:10px}
+
+  @media (max-width:768px){
+    .top-header{padding:14px 20px}
+    .brand-header .logo-container{width:44px;height:44px}
+    .brand-header h1{font-size:20px}
+    .mobile-menu{width:280px}
+    .agent-feature{flex-direction:column;align-items:flex-start;gap:16px}
+    .agent-feature-icon-orb{width:70px;height:70px}
+    .agent-feature-icon-core{width:56px;height:56px}
+    .agent-feature-icon{width:28px;height:28px}
+    .agent-feature-header{flex-direction:column;align-items:flex-start;gap:8px}
+    .agent-feature-action{position:absolute;top:28px;right:28px;opacity:1}
+    .agent-feature:hover{transform:translateX(0)}
+  }
+</style>
+</head>
+<body class="auth-locked">
+<div id="authGate" class="auth-overlay">
+  <div class="auth-card">
+    <header>
+      <h2>Techsinergy - T-ayudo</h2>
+      <p class="muted">Crea una cuenta o inicia sesión para continuar.</p>
+    </header>
+    <div class="auth-tabs">
+      <button class="tab-button active" data-auth-tab="signin">Iniciar sesión</button>
+      <button class="tab-button" data-auth-tab="signup">Crear cuenta</button>
+    </div>
+    <form id="authSignInForm" class="auth-form active" data-auth-view="signin" autocomplete="on">
+      <label for="signinEmail">Correo electrónico</label>
+      <input id="signinEmail" type="email" class="input" placeholder="you@company.com" required>
+      <label for="signinPassword">Contraseña</label>
+      <input id="signinPassword" type="password" class="input" placeholder="••••••••" required>
+      <button type="submit" class="btn primary">Iniciar sesión</button>
+    </form>
+    <form id="authSignUpForm" class="auth-form" data-auth-view="signup" autocomplete="on">
+      <label for="signupEmail">Correo electrónico</label>
+      <input id="signupEmail" type="email" class="input" placeholder="you@company.com" required>
+      <label for="signupPassword">Contraseña</label>
+      <input id="signupPassword" type="password" class="input" placeholder="Min 6 characters" required minlength="6">
+      <button type="submit" class="btn primary">Crear cuenta</button>
+    </form>
+    <div id="authFeedback" class="auth-feedback"></div>
+    <div class="auth-footer">
+      <span id="authUserEmail"></span>
+      <button id="authSignOut" class="btn secondary" style="margin-top:12px;display:none;">Cerrar sesión</button>
+    </div>
+  </div>
+</div>
+
+<!-- Wizard -->
+<div class="wizard-overlay" id="wizardOverlay">
+  <div class="wizard-container">
+    <div class="wizard-header">
+      <h2>¡Bienvenido! Configuración Rápida de Sales Ops</h2>
+      <p class="muted">3 pasos • menos de 2 minutos</p>
+      <div class="wizard-progress">
+        <div class="wizard-dot active" data-step="1"></div>
+        <div class="wizard-dot" data-step="2"></div>
+        <div class="wizard-dot" data-step="3"></div>
+      </div>
+    </div>
+    <div class="wizard-step active" data-step="1">
+      <h3>Paso 1: Empresa</h3>
+      <p class="muted">Esto personaliza tus agentes de sales ops</p>
+      <label>Nombre de la Empresa</label>
+      <input id="wizard_companyName" class="input" placeholder="Acme Software">
+      <label style="margin-top:12px">Producto / Servicio</label>
+      <input id="wizard_productService" class="input" placeholder="ej: Plataforma SaaS B2B">
+    </div>
+    <div class="wizard-step" data-step="2">
+      <h3>Paso 2: Fundamentos de Ventas</h3>
+      <p class="muted">Valores predeterminados que puedes cambiar después</p>
+      <div class="row">
+        <div class="col-6">
+          <label>Tamaño Promedio de Venta ($)</label>
+          <input id="wizard_avgDealSize" class="input" type="number" value="50000">
+        </div>
+        <div class="col-6">
+          <label>Ciclo de Ventas (días)</label>
+          <input id="wizard_salesCycleLength" class="input" type="number" value="90">
+        </div>
+        <div class="col-4">
+          <label>Meta de Tasa de Cierre (%)</label>
+          <input id="wizard_winRateTarget" class="input" type="number" value="25">
+        </div>
+        <div class="col-4">
+          <label>Cobertura de Pipeline</label>
+          <input id="wizard_pipelineCoverageTarget" class="input" type="number" value="3" step="0.5">
+        </div>
+        <div class="col-4">
+          <label>Periodo de Cuota</label>
+          <select id="wizard_quotaPeriod" class="input">
+            <option>Trimestral</option>
+            <option>Mensual</option>
+            <option>Anual</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label>CRM y Stack de Ventas</label>
+          <input id="wizard_stacks" class="input" placeholder="Salesforce; Outreach; Gong">
+        </div>
+      </div>
+    </div>
+    <div class="wizard-step" data-step="3">
+      <h3>Paso 3: Modelo de Ventas y Plantilla</h3>
+      <p class="muted">Elige una plantilla de industria y confirma el modelo de ventas</p>
+      <div class="template-grid" id="wizardTemplateGrid"></div>
+      <div class="row" style="margin-top:10px">
+        <div class="col-12">
+          <label>Modelo de Ventas (uno por línea)</label>
+          <textarea id="wizard_salesModel" rows="4" class="input">Ventas Directas
+Ventas Internas
+Canal/Socios</textarea>
+        </div>
+        <div class="col-12">
+          <label>ICP / Mercado Objetivo (opcional)</label>
+          <textarea id="wizard_icp" rows="3" class="input" placeholder="B2B Mid-market; $10-100M ingresos; 100-500 empleados"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="wizard-buttons">
+      <button class="btn secondary" id="wizardBack" style="display:none">Atrás</button>
+      <button class="btn secondary" id="wizardSkip">Omitir</button>
+      <button class="btn primary" id="wizardNext">Siguiente</button>
+    </div>
+  </div>
+</div>
+
+<div class="app" id="appShell">
+  <header class="top-header">
+    <div class="brand-header">
+      <div class="brand-header-left">
+        <div class="logo-container">
+          <div class="logo">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 18L9 12L13 16L21 8" stroke="#0c1629" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 8H15L13 10" stroke="#0c1629" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="3" cy="18" r="2" fill="#0c1629"/>
+              <circle cx="9" cy="12" r="2" fill="#0c1629"/>
+              <circle cx="13" cy="16" r="2" fill="#0c1629"/>
+              <circle cx="21" cy="8" r="2" fill="#0c1629"/>
+            </svg>
+          </div>
+        </div>
+        <div class="brand-content">
+        <h1>Techsinergy</h1>
+          <div class="muted">T-ayudo </div>
+      </div>
+    </div>
+      <div class="hamburger-menu" id="hamburgerMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    </div>
+  </header>
+  
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <h2>Menú</h2>
+      <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
+    </div>
+    <nav class="mobile-nav">
+      <button class="active" data-page="home">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="9 22 9 12 15 12 15 22" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span> Inicio
+      </button>
+      <button data-page="setup">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span> Configuración <span class="status-badge incomplete" id="setupBadgeMobile">Incompleto</span>
+      </button>
+      <button data-page="agents">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9" cy="7" r="4" stroke-linecap="round"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span> Mis Agentes
+      </button>
+      <button data-page="automation">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span> Automatización
+      </button>
+      <button data-page="integrations">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span> Integraciones
+      </button>
+      <button data-page="save">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="17 21 17 13 7 13 7 21" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="7 3 7 8 15 8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span> Guardar y Compartir
+      </button>
+      <button data-page="help">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span> Ayuda
+      </button>
+    </nav>
+    <div class="mobile-menu-footer">
+      <div>Funciona offline en el navegador</div>
+      <div class="divider"></div>
+      <div class="muted">by <a href="https://techsinergy.net/" target="_blank">Techsinergy</a></div>
+    </div>
+  </div>
+
+  <div class="app-wrapper">
+  <main class="main">
+    <!-- HOME -->
+    <section class="panel" id="page-home">
+      <div class="hero">
+        <h1>Agentes de IA Profesionales para Sales Ops y Excelencia en Ingresos</h1>
+        <p>Prompts listos para producción con frameworks para gestión de pipeline, pronósticos, planificación de territorios y operaciones de ingresos.</p>
+      </div>
+      <div class="agents-showcase">
+        <div class="agent-feature" data-agent="pipeline">
+          <div class="agent-feature-icon-orb">
+            <div class="agent-feature-icon-core">
+              <div class="agent-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="3" width="18" height="18" rx="2" stroke-linecap="round"/>
+                  <path d="M3 9h18M9 21V9" stroke-linecap="round"/>
+                </svg>
+        </div>
+        </div>
+        </div>
+          <div class="agent-feature-content">
+            <div class="agent-feature-header">
+              <h3>Pipeline y Pronósticos</h3>
+              <span class="agent-feature-experience">10 Años</span>
+        </div>
+            <p class="agent-feature-expert">Sergio Aguilar</p>
+            <p class="agent-feature-description">Salud del pipeline, llamadas de pronóstico, progresión de tratos, precisión de compromisos. Experto en validación de etapas, asignación de categorías de pronóstico y análisis de factores de riesgo.</p>
+        </div>
+          <div class="agent-feature-action">
+            <button class="btn primary">→</button>
+        </div>
+        </div>
+        <div class="agent-feature" data-agent="territory">
+          <div class="agent-feature-icon-orb">
+            <div class="agent-feature-icon-core">
+              <div class="agent-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="12" cy="10" r="3" stroke-linecap="round"/>
+                </svg>
+        </div>
+            </div>
+          </div>
+          <div class="agent-feature-content">
+            <div class="agent-feature-header">
+              <h3>Planificación de Territorio y Cuotas</h3>
+              <span class="agent-feature-experience">12 Años</span>
+            </div>
+            <p class="agent-feature-expert">Marco Hernandez</p>
+            <p class="agent-feature-description">Diseño de territorios, asignación de cuotas, planificación de capacidad, balanceo. Se especializa en análisis de mercado, estrategias de segmentación y modelos de distribución equitativa.</p>
+          </div>
+          <div class="agent-feature-action">
+            <button class="btn primary">→</button>
+          </div>
+        </div>
+        <div class="agent-feature" data-agent="enablement">
+          <div class="agent-feature-icon-orb">
+            <div class="agent-feature-icon-core">
+              <div class="agent-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M8 7h8M8 11h8M8 15h4" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="agent-feature-content">
+            <div class="agent-feature-header">
+              <h3>Habilitación de Ventas</h3>
+              <span class="agent-feature-experience">8 Años</span>
+            </div>
+            <p class="agent-feature-expert">Jazmin Lopez</p>
+            <p class="agent-feature-description">Estrategia de contenido, programas de capacitación, manuales de juego, incorporación. Experta en auditorías de contenido, seguimiento de uso y construcción de programas de habilitación escalables.</p>
+          </div>
+          <div class="agent-feature-action">
+            <button class="btn primary">→</button>
+          </div>
+        </div>
+        <div class="agent-feature" data-agent="dealdesk">
+          <div class="agent-feature-icon-orb">
+            <div class="agent-feature-icon-core">
+              <div class="agent-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="7" width="20" height="14" rx="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M8 11h8M8 15h8" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="agent-feature-content">
+            <div class="agent-feature-header">
+              <h3>Mesa de Negocios y Precios</h3>
+              <span class="agent-feature-experience">9 Años</span>
+            </div>
+            <p class="agent-feature-expert">Alejando Muedano</p>
+            <p class="agent-feature-description">Estructura de tratos, aprobaciones, descuentos, términos contractuales. Se especializa en flujos de trabajo de aprobación, optimización de precios y estructuración de tratos complejos.</p>
+          </div>
+          <div class="agent-feature-action">
+            <button class="btn primary">→</button>
+          </div>
+        </div>
+        <div class="agent-feature" data-agent="crm">
+          <div class="agent-feature-icon-orb">
+            <div class="agent-feature-icon-core">
+              <div class="agent-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="agent-feature-content">
+            <div class="agent-feature-header">
+              <h3>CRM y Calidad de Datos</h3>
+              <span class="agent-feature-experience">7 Años</span>
+            </div>
+            <p class="agent-feature-expert">Carlos Escorza</p>
+            <p class="agent-feature-description">Higiene de Salesforce, gobernanza de datos, estandarización de campos. Experto en automatización, reglas de validación y mantenimiento de calidad pristina de datos CRM.</p>
+          </div>
+          <div class="agent-feature-action">
+            <button class="btn primary">→</button>
+          </div>
+        </div>
+        <div class="agent-feature" data-agent="compensation">
+          <div class="agent-feature-icon-orb">
+            <div class="agent-feature-icon-core">
+              <div class="agent-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="12" y1="1" x2="12" y2="23" stroke-linecap="round"/>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="agent-feature-content">
+            <div class="agent-feature-header">
+              <h3>Compensación y SPIFs</h3>
+              <span class="agent-feature-experience">11 Años</span>
+            </div>
+            <p class="agent-feature-expert">Rafael Santos</p>
+            <p class="agent-feature-description">Planes de compensación, aceleradores, SPIFs, cálculos de pagos. Se especializa en diseño de planes, modelado de escenarios y generación de comportamientos de ventas deseados.</p>
+          </div>
+          <div class="agent-feature-action">
+            <button class="btn primary">→</button>
+          </div>
+        </div>
+        <div class="agent-feature" data-agent="analytics">
+          <div class="agent-feature-icon-orb">
+            <div class="agent-feature-icon-core">
+              <div class="agent-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="17 6 23 6 23 12" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="agent-feature-content">
+            <div class="agent-feature-header">
+              <h3>Análisis y Reportes de Ventas</h3>
+              <span class="agent-feature-experience">9 Años</span>
+            </div>
+            <p class="agent-feature-expert">Samara Davila</p>
+            <p class="agent-feature-description">Dashboards, KPIs, seguimiento de rendimiento, revisiones comerciales. Experta en visualización de datos, definición de métricas y entrega de insights accionables.</p>
+          </div>
+          <div class="agent-feature-action">
+            <button class="btn primary">→</button>
+          </div>
+        </div>
+        <div class="agent-feature" data-agent="process">
+          <div class="agent-feature-icon-orb">
+            <div class="agent-feature-icon-core">
+              <div class="agent-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <polyline points="23 4 23 10 17 10" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="1 20 1 14 7 14" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="agent-feature-content">
+            <div class="agent-feature-header">
+              <h3>Proceso y Metodología de Ventas</h3>
+              <span class="agent-feature-experience">10 Años</span>
+            </div>
+            <p class="agent-feature-expert">Alberto Cruz</p>
+            <p class="agent-feature-description">Definiciones de etapas, frameworks de calificación, revisiones de tratos. Experto en MEDDIC, Challenger e implementación de metodologías de ventas estructuradas.</p>
+          </div>
+          <div class="agent-feature-action">
+            <button class="btn primary">→</button>
+          </div>
+        </div>
+        <div class="agent-feature" data-agent="revops">
+          <div class="agent-feature-icon-orb">
+            <div class="agent-feature-icon-core">
+              <div class="agent-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="3" stroke-linecap="round"/>
+                  <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="agent-feature-content">
+            <div class="agent-feature-header">
+              <h3>RevOps y Sistemas</h3>
+              <span class="agent-feature-experience">8 Años</span>
+            </div>
+            <p class="agent-feature-expert">Jaime Gomez</p>
+            <p class="agent-feature-description">Stack tecnológico, integraciones, automatización, arquitectura de sistemas. Se especializa en optimización de sistemas, integraciones API e infraestructura escalable.</p>
+          </div>
+          <div class="agent-feature-action">
+            <button class="btn primary">→</button>
+          </div>
+        </div>
+      </div>
+      <div class="info-box">
+        <h3 style="margin-top:0">¿Qué incluye T-ayudo ?</h3>
+        <ul class="list">
+          <li>9 agentes especializados de sales ops con experiencia del mundo real</li>
+          <li>Frameworks paso a paso (pronósticos, planificación de territorios, modelos de cuota)</li>
+          <li>Herramientas de ayuda interactivas para prototipado rápido</li>
+          <li>15+ automation recipes for Salesforce, Outreach, and analytics</li>
+          <li>Integration templates (Salesforce, HubSpot, Outreach, Gong)</li>
+          <li>Performance dashboards (pipeline, win rate, quota attainment)</li>
+          <li>Industry-specific templates and tactical playbooks</li>
+          <li><strong>Not legal advice</strong> – verify compliance with employment & compensation laws</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SETUP -->
+    <section class="panel" id="page-setup" style="display:none">
+      <h2>⚙️ Configurar Detalles de la Empresa</h2>
+      <p class="note">Configura una vez. Los ajustes se aplican a todos los agentes.</p>
+      <div class="row">
+        <div class="col-6">
+          <label>Nombre de la Empresa</label>
+          <input id="companyName" class="input" placeholder="Acme Software">
+        </div>
+        <div class="col-6">
+          <label>Producto / Servicio</label>
+          <input id="productService" class="input" placeholder="ej: Plataforma SaaS B2B">
+        </div>
+        <div class="col-6">
+          <label>Industria</label>
+          <select id="industry" class="input">
+            <option value="b2b_saas">B2B SaaS</option>
+            <option value="enterprise_software">Software Empresarial</option>
+            <option value="fintech">Fintech</option>
+            <option value="martech">Martech</option>
+            <option value="healthcare_tech">Tecnología Sanitaria</option>
+            <option value="manufacturing">Manufactura</option>
+            <option value="professional_services">Servicios Profesionales</option>
+          </select>
+        </div>
+        <div class="col-6">
+          <label>Estilo de Comunicación</label>
+          <select id="tone" class="input">
+            <option value="strategic">Estratégico y Basado en Datos</option>
+            <option value="executive">Estilo Ejecutivo Resumido</option>
+            <option value="analytical">Analítico y Detallado</option>
+            <option value="action">Orientado a la Acción</option>
+          </select>
+        </div>
+
+        <div class="col-12 divider"></div>
+
+        <div class="col-6">
+          <label>Tamaño Promedio de Venta ($)</label>
+          <input id="avgDealSize" type="number" class="input" value="50000">
+        </div>
+        <div class="col-6">
+          <label>Duración del Ciclo de Ventas (días)</label>
+          <input id="salesCycleLength" type="number" class="input" value="90">
+        </div>
+
+        <div class="col-3">
+          <label>Meta de Tasa de Cierre (%)</label>
+          <input id="winRateTarget" type="number" class="input" value="25">
+        </div>
+        <div class="col-3">
+          <label>Meta de Cobertura de Pipeline</label>
+          <input id="pipelineCoverageTarget" type="number" class="input" value="3" step="0.5">
+        </div>
+        <div class="col-3">
+          <label>Precisión de Pronóstico (%)</label>
+          <input id="forecastAccuracyTarget" type="number" class="input" value="90">
+        </div>
+        <div class="col-3">
+          <label>Cumplimiento de Cuota (%)</label>
+          <input id="quotaAttainmentTarget" type="number" class="input" value="100">
+        </div>
+
+        <div class="col-6">
+          <label>Periodo de Cuota</label>
+          <select id="quotaPeriod" class="input">
+            <option>Trimestral</option>
+            <option>Mensual</option>
+            <option>Anual</option>
+          </select>
+        </div>
+        <div class="col-6">
+          <label>Fin del Año Fiscal</label>
+          <input id="fiscalYearEnd" class="input" value="31 de Diciembre">
+        </div>
+
+        <div class="col-12 divider"></div>
+
+        <div class="col-12">
+          <label>Mercado Objetivo / ICP</label>
+          <input id="targetMarket" class="input" placeholder="B2B Mid-market y Empresarial">
+        </div>
+
+        <div class="col-12">
+          <label>Detalles del Perfil de Cliente Ideal</label>
+          <textarea id="icp" rows="3" class="input" placeholder="Enfoque de industria, tamaño de empresa, puntos de dolor, criterios de compra"></textarea>
+          <div class="note">Sé específico: verticales, número de empleados, rango de ingresos, requisitos del stack tecnológico.</div>
+        </div>
+
+        <div class="col-12">
+          <label>OKRs / Objetivos Clave</label>
+          <input id="okrs" class="input" placeholder="Pipeline 3x cobertura; Tasa de cierre ≥ 25%; Precisión de pronóstico ≥ 90%; Cumplimiento de cuota 100%">
+        </div>
+
+        <div class="col-12 divider"></div>
+
+        <div class="col-6">
+          <label>Sistema CRM</label>
+          <input id="crmSystem" class="input" placeholder="Salesforce / HubSpot / Dynamics">
+        </div>
+        <div class="col-6">
+          <label>Stack de Compromiso de Ventas</label>
+          <input id="salesStack" class="input" placeholder="Outreach; SalesLoft; LinkedIn Sales Nav">
+        </div>
+        <div class="col-12">
+          <label>Herramientas de Análisis e Inteligencia de Negocios</label>
+          <input id="analyticsStack" class="input" placeholder="Tableau; Clari; InsightSquared">
+        </div>
+        <div class="col-12">
+          <label>Herramientas de Automatización</label>
+          <input id="automationStack" class="input" placeholder="Zapier; Make; n8n">
+        </div>
+
+        <div class="col-12 divider"></div>
+
+        <div class="col-6">
+          <h3>Modelo de Ventas</h3>
+          <textarea id="salesModel" rows="6" class="input">Ventas Directas
+Ventas Internas
+Canal/Socios</textarea>
+          <div class="note">Uno por línea. Edita según sea necesario.</div>
+        </div>
+        <div class="col-6">
+          <h3>Pilares de Contenido</h3>
+          <textarea id="contentPillars" rows="6" class="input">Presentaciones
+Casos de Estudio
+Calculadoras ROI
+Tarjetas de Batalla</textarea>
+          <div class="note">Tipos de contenido clave para habilitación de ventas.</div>
+        </div>
+
+        <div class="col-12">
+          <h3>Metodología de Ventas</h3>
+          <input id="salesMethodology" class="input" value="MEDDIC, Retador, Venta de Soluciones">
+          <div class="note">Tus frameworks de calificación y ventas</div>
+        </div>
+
+        <div class="col-12">
+          <h3>Plantillas de Industria</h3>
+          <div id="industryChips" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+          <div class="note">Haz clic en un chip para aplicar configuraciones preestablecidas</div>
+        </div>
+
+        <input id="industryTemplate" type="hidden" class="input">
+
+        <div class="col-12">
+          <h3>Manuales Tácticos</h3>
+          <div id="playbookList" class="row"></div>
+          <div class="note">Selecciona manuales para mantenerlos a mano en todos los agentes</div>
+          <div class="row" style="margin-top:10px">
+            <button class="btn" id="btnBuildPlaybookSetup">Construir Manuales Seleccionados</button>
+            <button class="btn secondary" id="btnCopyPlaybookSetup">Copiar</button>
+          </div>
+          <pre id="playbookOutputSetup" style="display:none"></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- AGENTS -->
+    <section class="panel" id="page-agents" style="display:none">
+      <h2>🧑‍💼 Mis AI Agentes</h2>
+      <div class="tabs">
+        <button class="tab-button active" data-tab="pipeline">
+          <span class="tab-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="5" width="3" height="14" rx="1.5"/>
+              <rect x="10.5" y="3" width="3" height="18" rx="1.5"/>
+              <rect x="18" y="8" width="3" height="13" rx="1.5"/>
+            </svg>
+          </span>
+          <span class="tab-label">Pipeline</span>
+        </button>
+        <button class="tab-button" data-tab="territory">
+          <span class="tab-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 21s7-5.5 7-11.5S16.627 3 12 3 5 6.5 5 9.5 12 21 12 21Z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </span>
+          <span class="tab-label">Territorios</span>
+        </button>
+        <button class="tab-button" data-tab="enablement">
+          <span class="tab-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6.5V18c0 .828.895 1.5 2 1.5 1.105 0 2-.672 2-1.5s.895-1.5 2-1.5 2 .672 2 1.5 0 0 0 0"/>
+              <path d="M4 6.5C4 5.119 5.79 4 8 4s4 .9 4 2.5V18"/>
+              <path d="M12 6.5C12 5.119 13.79 4 16 4s4 .9 4 2.5V18c0 .828-.895 1.5-2 1.5s-2-.672-2-1.5-.895-1.5-2-1.5-2 .672-2 1.5"/>
+            </svg>
+          </span>
+          <span class="tab-label">Habilitación</span>
+        </button>
+        <button class="tab-button" data-tab="dealdesk">
+          <span class="tab-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 9h14l2 4H3l2-4Z"/>
+              <path d="M7 13v5h10v-5"/>
+              <path d="M9 9V6a3 3 0 0 1 6 0v3"/>
+            </svg>
+          </span>
+          <span class="tab-label">Mesa de Negocios</span>
+        </button>
+        <button class="tab-button" data-tab="crm">
+          <span class="tab-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 7a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4h-1.5l-2.5 3-2.5-3H8a4 4 0 0 1-4-4V7Z"/>
+              <circle cx="9" cy="10" r="1.5"/>
+              <circle cx="15" cy="10" r="1.5"/>
+            </svg>
+          </span>
+          <span class="tab-label">CRM</span>
+        </button>
+        <button class="tab-button" data-tab="compensation">
+          <span class="tab-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="7.5"/>
+              <path d="M12 7v10"/>
+              <path d="M9 10.5c0-1.38 1.45-2.5 3.25-2.5S15.5 9.12 15.5 10.5c0 1.38-1.45 2.5-3.25 2.5S9 11.88 9 10.5Z"/>
+              <path d="M9 13.5c0 1.38 1.45 2.5 3.25 2.5S15.5 14.88 15.5 13.5"/>
+            </svg>
+          </span>
+          <span class="tab-label">Compensación</span>
+        </button>
+        <button class="tab-button" data-tab="analytics">
+          <span class="tab-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 19V9"/>
+              <path d="M12 19V5"/>
+              <path d="M19 19v-7"/>
+              <path d="M4 19h16"/>
+            </svg>
+          </span>
+          <span class="tab-label">Analítica</span>
+        </button>
+        <button class="tab-button" data-tab="process">
+          <span class="tab-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="7"/>
+              <path d="M12 8v4l2.5 2.5"/>
+              <path d="M12 3v2"/>
+              <path d="M12 19v2"/>
+              <path d="M5.64 5.64 7.05 7.05"/>
+              <path d="m16.95 16.95 1.41 1.41"/>
+            </svg>
+          </span>
+          <span class="tab-label">Procesos</span>
+        </button>
+        <button class="tab-button" data-tab="revops">
+          <span class="tab-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 5h8l1 4H7l1-4Z"/>
+              <path d="M6 9h12v6a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9Z"/>
+              <path d="M10 13h4"/>
+              <path d="M10 11h4"/>
+            </svg>
+          </span>
+          <span class="tab-label">RevOps</span>
+        </button>
+      </div>
+
+      <!-- Pipeline -->
+      <div class="tab-content active" data-tab-content="pipeline">
+        <div class="info-box">
+          <h4 style="margin-top:0">Conoce a Sergio Aguilar – Pipeline y Experto en previsión</h4>
+          <p><strong>10 años</strong> de experiencia en la gestión de la salud del pipeline, la ejecución de llamadas de previsión y la mejora de la precisión de los comprometidos en equipos de ventas empresariales.</p>
+          <p>Piensa paso a paso: revisión de pipeline→validación de etapa→categoría de previsión→comprometido/mejor escenario→factores de riesgo→acciones→rastrear precisión.</p>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>Modo</label>
+            <select id="pipelineMode" class="input">
+              <option value="review">Marco de revisión de pipeline</option>
+              <option value="forecast">Agenda de llamada de previsión</option>
+              <option value="health">Análisis de salud de pipeline</option>
+              <option value="coverage">Métricas de cobertura y velocidad</option>
+            </select>
+            <div class="note" id="pipelineModeHelp">Revisión: inspección etapa por etapa, calidad de la oferta, acciones siguientes.</div>
+          </div>
+          <div class="col-6">
+            <label>Mostrar ejemplos</label>
+            <div class="checkbox-group">
+              <input id="pipelineShowExamples" type="checkbox">
+              <label for="pipelineShowExamples" style="margin:0">Incluir marcos de ejemplo y plantillas</label>
+            </div>
+          </div>
+        </div>
+        <div class="copy-wrap">
+          <button class="copy-btn" data-target="pipelinePrompt">Copiar prompt completo</button>
+          <label>Prompt de IA (Ultimate Edition)</label>
+          <pre id="pipelinePrompt"></pre>
+        </div>
+        <div class="advanced-toggle" data-target="pipeline-advanced">
+          <strong>▼ Mostrar opciones avanzadas y recursos</strong><span class="advanced-toggle-icon">▼</span>
+        </div>
+        <div class="advanced-content" id="pipeline-advanced">
+          <div class="quality-checklist">
+            <h4>Lista de control de calidad</h4>
+            <ul class="list">
+              <li>Ratio de cobertura por segmento (3-4x para pipeline saludable)</li>
+              <li>Edad de la oferta por etapa; marcar oportunidades estancadas</li>
+              <li>Categorías de previsión claramente definidas (comprometido/mejor escenario/pipeline)</li>
+              <li>Acciones siguientes y propietarios para cada oferta</li>
+              <li>Tasa de éxito histórica por etapa para precisión</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Ayudante de pipeline</h4>
+            <div class="row">
+              <div class="col-6"><label>Equipo/Segmento</label><input id="pipe_team" class="input" placeholder="Empresa Este"></div>
+              <div class="col-6"><label>Periodo de tiempo</label><input id="pipe_period" class="input" placeholder="Trimestre 1 2025"></div>
+              <div class="col-12"><label>Áreas de enfoque</label><textarea id="pipe_focus" rows="3" class="input" placeholder="Acuerdos de etapa tardía, brechas de cobertura, velocidad"></textarea></div>
+              <div class="col-12">
+                <button class="btn" id="btnBuildPipeBlock">Construir bloque de pipeline</button>
+                <button class="btn secondary" id="btnCopyPipeBlock">Copiar</button>
+              </div>
+              <div class="col-12"><pre id="pipe_block"></pre></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Territory -->
+      <div class="tab-content" data-tab-content="territory">
+        <div class="info-box">
+          <h4 style="margin-top:0">Conoce a Marco Hernandez – Experto en diseño de territorios y planificación de cuotas</h4>
+          <p><strong>12 años</strong> de experiencia en el diseño de territorios, la asignación de cuotas y el equilibrio de la cobertura en mercados diversos.</p>
+          <p>Piensa paso a paso: análisis de mercado→segmentación→caracterización de territorio→modelo de capacidad→asignación de cuotas→equilibrio de cobertura→comunicación.</p>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>Modo</label>
+            <select id="territoryMode" class="input">
+              <option value="design">Modelo de diseño de territorio</option>
+              <option value="quota">Marco de asignación de cuotas</option>
+              <option value="capacity">Planificación de capacidad</option>
+              <option value="rebalance">Reequilibrio de territorio</option>
+            </select>
+            <div class="note" id="territoryModeHelp">Diseño: divisiones geográficas/verticales, distribución de cuentas, equidad.</div>
+          </div>
+          <div class="col-6">
+            <label>Mostrar ejemplos</label>
+            <div class="checkbox-group">
+              <input id="territoryShowExamples" type="checkbox">
+              <label for="territoryShowExamples" style="margin:0">Incluir modelos de ejemplo y criterios</label>
+            </div>
+          </div>
+        </div>
+        <div class="copy-wrap">
+          <button class="copy-btn" data-target="territoryPrompt">Copiar prompt completo</button>
+          <label>Prompt de IA (Ultimate Edition)</label>
+          <pre id="territoryPrompt"></pre>
+        </div>
+        <div class="advanced-toggle" data-target="territory-advanced">
+          <strong>▼ Mostrar opciones avanzadas y recursos</strong><span class="advanced-toggle-icon">▼</span>
+        </div>
+        <div class="advanced-content" id="territory-advanced">
+          <div class="quality-checklist">
+            <h4>Lista de control de calidad</h4>
+            <ul class="list">
+              <li>Distribución de oportunidades igual (TAM, cuenta de cuenta)</li>
+              <li>Límites claros (geografía, vertical, cuentas nombradas)</li>
+              <li>Cuota realista basada en el rendimiento histórico</li>
+              <li>Plan de transición para cambios de territorio</li>
+              <li>Relieve de cuota para periodos de rampa</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enablement -->
+      <div class="tab-content" data-tab-content="enablement">
+        <div class="info-box">
+          <h4 style="margin-top:0">Conoce a Jazmin Lopez – Líder en habilitación de ventas</h4>
+          <p><strong>8 años</strong> de experiencia en la creación de bibliotecas de contenido, programas de capacitación y playbooks de incorporación para equipos de ventas de alto rendimiento.</p>
+          <p>Piensa paso a paso: análisis de necesidades→auditoría de contenido→creación/curación→organización→capacitación→medición de adopción→iteración.</p>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>Modo</label>
+            <select id="enablementMode" class="input">
+              <option value="content">Estrategia de contenido y auditoría</option>
+              <option value="training">Diseño de programa de capacitación</option>
+              <option value="playbook">Constructor de playbooks de ventas</option>
+              <option value="onboarding">Plan de incorporación</option>
+            </select>
+            <div class="note" id="enablementModeHelp">Contenido: inventario, brechas, seguimiento de uso, cadencia de actualización.</div>
+          </div>
+          <div class="col-6">
+            <label>Mostrar ejemplos</label>
+            <div class="checkbox-group">
+              <input id="enablementShowExamples" type="checkbox">
+              <label for="enablementShowExamples" style="margin:0">Incluir estructuras de ejemplo y plantillas</label>
+            </div>
+          </div>
+        </div>
+        <div class="copy-wrap">
+          <button class="copy-btn" data-target="enablementPrompt">Copiar prompt completo</button>
+          <label>Prompt de IA (Ultimate Edition)</label>
+          <pre id="enablementPrompt"></pre>
+        </div>
+        <div class="advanced-toggle" data-target="enablement-advanced">
+          <strong>▼ Mostrar opciones avanzadas y recursos</strong><span class="advanced-toggle-icon">▼</span>
+        </div>
+        <div class="advanced-content" id="enablement-advanced">
+          <div class="quality-checklist">
+            <h4>Lista de control de calidad</h4>
+            <ul class="list">
+              <li>Contenido organizado por etapa de viaje del comprador</li> 
+              <li>Fácil de encontrar (CMS, etiquetas, búsqueda)</li>
+              <li>Control de versiones y fechas de expiración</li>
+              <li>Métricas de uso rastreadas (descargas, compartidos)</li>
+              <li>Ciclo de feedback del equipo de ventas al equipo de contenido</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deal Desk -->
+      <div class="tab-content" data-tab-content="dealdesk">
+        <div class="info-box">
+          <h4 style="margin-top:0">Conoce a Alejando Muedano – Especialista en Mesa de Negocios y Precios</h4>
+          <p><strong>9 años</strong> de experiencia en la estructuración de acuerdos complejos, la gestión de aprobaciones y la optimización de la estrategia de precios.</p>
+          <p>Piensa paso a paso: intake→structure review→pricing analysis→discount approval→legal review→execute→track.</p>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>Modo</label> 
+            <select id="dealdeskMode" class="input">
+              <option value="structure">Plantilla de estructuración de oferta</option>
+              <option value="approval">Matriz de aprobación y flujo de trabajo</option>
+              <option value="pricing">Estrategia de precios y descuentos</option>
+              <option value="review">Lista de control de revisión de oferta</option>
+            </select>
+            <div class="note" id="dealdeskModeHelp">Estructuración: términos de pago, longitud del contrato, límites de descuento.</div>
+          </div>
+          <div class="col-6">
+            <label>Mostrar ejemplos</label>
+            <div class="checkbox-group">
+              <input id="dealdeskShowExamples" type="checkbox">
+              <label for="dealdeskShowExamples" style="margin:0">Incluir flujos de aprobación de ejemplo</label>
+            </div>
+          </div>
+        </div>
+        <div class="copy-wrap">
+          <button class="copy-btn" data-target="dealdeskPrompt">Copiar prompt completo</button>
+          <label>Prompt de IA (Ultimate Edition)</label>
+          <pre id="dealdeskPrompt"></pre>
+        </div>
+        <div class="advanced-toggle" data-target="dealdesk-advanced">
+          <strong>▼ Mostrar opciones avanzadas y recursos</strong><span class="advanced-toggle-icon">▼</span>
+        </div>
+        <div class="advanced-content" id="dealdesk-advanced">
+          <div class="quality-checklist">
+            <h4>Lista de control de calidad</h4>
+            <ul class="list">
+              <li>Niveles de autoridad de descuento claros</li>
+              <li>Términos documentados</li>
+              <li>SLAs de aprobación definidos</li>
+              <li>Camino de escalación de términos no estándar</li>
+              <li>Métricas de oferta rastreadas (tiempo de ciclo, tasa de éxito por estructura)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- CRM -->
+      <div class="tab-content" data-tab-content="crm">
+        <div class="info-box">
+          <h4 style="margin-top:0">Conoce a Carlos Escorza – Gerente de CRM & Calidad de Datos</h4>
+          <p><strong>7 años</strong> de experiencia en mantener la excelencia de Salesforce, aplicar estándares de datos y construir automatización.</p>
+          <p>Piensa paso a paso: auditoría→identificar brechas→definir estándares→automatizar→capacitar→monitorizar→aplicar.</p>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>Modo</label> 
+            <select id="crmMode" class="input">
+              <option value="hygiene">Auditoría de Higiene de Datos</option>
+              <option value="standards">Estándares de campo y Gobernanza</option>
+              <option value="automation">Automatización de Flujo de Trabajo</option>
+              <option value="adoption">Plan de Adopción de Usuario</option>
+            </select>
+            <div class="note" id="crmModeHelp">Higiene: campos faltantes, duplicados, datos caducados, plan de corrección.</div>
+          </div>
+          <div class="col-6">
+            <label>Mostrar ejemplos</label>
+            <div class="checkbox-group">
+              <input id="crmShowExamples" type="checkbox">
+              <label for="crmShowExamples" style="margin:0">Incluir reglas de validación y reportes</label>
+            </div>
+          </div>
+        </div>
+        <div class="copy-wrap">
+          <button class="copy-btn" data-target="crmPrompt">Copiar prompt completo</button>
+          <label>Prompt de IA (Ultimate Edition)</label>
+          <pre id="crmPrompt"></pre>
+        </div>
+        <div class="advanced-toggle" data-target="crm-advanced">
+          <strong>▼ Mostrar opciones avanzadas y recursos</strong><span class="advanced-toggle-icon">▼</span>
+        </div>
+        <div class="advanced-content" id="crm-advanced">
+          <div class="quality-checklist">
+            <h4>Lista de control de calidad</h4>
+            <ul class="list">
+              <li>Campos requeridos aplicados en transiciones de etapa</li>
+              <li>Valores de lista de selección estandarizados</li>
+              <li>Reglas de gestión de duplicados activas</li>
+              <li>Tableros de calidad de datos visibles para reps</li>
+              <li>Campañas de limpieza programadas regularmente</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compensation -->
+      <div class="tab-content" data-tab-content="compensation">
+        <div class="info-box">
+          <h4 style="margin-top:0">Conoce a Rafael Santos – Especialista en Planificación de Compensación</h4> 
+          <p><strong>11 años</strong> de experiencia en la diseñación de planes de compensación de ventas, el cálculo de pagos y la gestión de SPIFs que impulsan el comportamiento.</p>
+          <p>Piensa paso a paso: objetivos→diseño de plan→modelado de escenarios→aprobación→comunicación→cálculo→rastreo→ajuste.</p>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>Modo</label> 
+            <select id="compensationMode" class="input">
+              <option value="plan">Diseño de Plan de Compensación</option>
+              <option value="calculator">Calculadora de Pago</option>
+              <option value="spif">Diseño de SPIF/Concurso</option>
+              <option value="modeling">Modelado de Escenarios</option>
+            </select>
+            <div class="note" id="compensationModeHelp">Plan: división base/variable, aceleradores, límites, frecuencia.</div>
+          </div>
+          <div class="col-6">
+            <label>Mostrar ejemplos</label>
+            <div class="checkbox-group">
+              <input id="compensationShowExamples" type="checkbox">
+              <label for="compensationShowExamples" style="margin:0">Incluir estructuras de compensación de ejemplo</label>
+            </div>
+          </div>
+        </div>
+        <div class="copy-wrap">
+          <button class="copy-btn" data-target="compensationPrompt">Copiar prompt completo</button>
+          <label>Prompt de IA (Ultimate Edition)</label>
+          <pre id="compensationPrompt"></pre>
+        </div>
+        <div class="advanced-toggle" data-target="compensation-advanced">
+          <strong>▼ Mostrar opciones avanzadas y recursos</strong><span class="advanced-toggle-icon">▼</span>
+        </div>
+        <div class="advanced-content" id="compensation-advanced">
+          <div class="quality-checklist">
+            <h4>Lista de control de calidad</h4>
+            <ul class="list">
+              <li>Métricas de rendimiento claras (cumplimiento de cuota %)</li>
+              <li>Frecuencia de pago definida (mensual/trimestral)</li>
+              <li>Aceleradores alineados con objetivos del negocio</li>
+              <li>Plan competitivo con benchmarks del mercado</li>
+              <li>Suficientemente simple para que los reps lo entiendan</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Analytics -->
+      <div class="tab-content" data-tab-content="analytics">
+        <div class="info-box">
+          <h4 style="margin-top:0">Conoce a Samara Davila – Especialista en Análisis de Ventas y Reporting</h4>
+          <p><strong>9 años</strong> de experiencia en la construcción de dashboards, el seguimiento de KPIs y la entrega de insights que impulsan el rendimiento de las ventas.</p>
+          <p>Piensa paso a paso: pregunta del negocio→métricas→fuentes de datos→dashboard→insights→acciones→rastreo del impacto.</p>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>Modo</label>
+            <select id="analyticsMode" class="input">
+              <option value="dashboard">Dashboard de Rendimiento</option>
+              <option value="metrics">Definición y seguimiento de KPIs</option>
+              <option value="review">Plantilla de revisión de negocio</option>
+              <option value="analysis">Análisis en profundidad</option>
+            </select>
+            <div class="note" id="analyticsModeHelp">Dashboard: pipeline, tasa de éxito, cumplimiento de cuota, velocidad.</div>
+          </div>
+          <div class="col-6">
+            <label>Mostrar ejemplos</label>
+            <div class="checkbox-group">
+              <input id="analyticsShowExamples" type="checkbox">
+              <label for="analyticsShowExamples" style="margin:0">Incluir dashboards y KPIs de ejemplo</label>
+            </div>
+          </div>
+        </div>
+        <div class="copy-wrap">
+          <button class="copy-btn" data-target="analyticsPrompt">Copiar prompt completo</button>
+          <label>Prompt de IA (Ultimate Edition)</label>
+          <pre id="analyticsPrompt"></pre>
+        </div>
+        <div class="advanced-toggle" data-target="analytics-advanced">
+          <strong>▼ Mostrar opciones avanzadas y recursos</strong><span class="advanced-toggle-icon">▼</span>
+        </div>
+        <div class="advanced-content" id="analytics-advanced">
+          <div class="quality-checklist">
+            <h4>Lista de control de calidad</h4>
+            <ul class="list">
+              <li>Métricas alineadas con objetivos del negocio</li>
+              <li>Definiciones de datos documentadas</li>
+              <li>Frecuencia de actualización adecuada</li>
+              <li>Insights accionables, no solo números</li>
+              <li>Acceso a self-service para gerentes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Process -->
+      <div class="tab-content" data-tab-content="process">
+        <div class="info-box">
+          <h4 style="margin-top:0">Conoce a Alberto Cruz – Especialista en Procesos y Metodología de Ventas</h4> 
+          <p><strong>10 años</strong> de experiencia en la definición de criterios de etapa, frameworks de calificación y la ejecución de revisiones de acuerdos efectivas.</p>
+          <p>Piensa paso a paso: mapa de viaje→definir etapas→criterios de entrada/salida→momentos de coaching→iterar.</p>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>Modo</label>
+            <select id="processMode" class="input">
+              <option value="stages">Definición y criterios de etapa</option>
+              <option value="qualification">Framework de calificación</option>
+              <option value="dealreview">Plantilla de revisión de acuerdos</option>
+              <option value="methodology">Implementación de metodología</option>
+            </select>
+            <div class="note" id="processModeHelp">Etapas: criterios de entrada/salida claros, actividades, duración.</div>
+          </div>
+          <div class="col-6">
+            <label>Mostrar ejemplos</label>
+            <div class="checkbox-group">
+              <input id="processShowExamples" type="checkbox">
+              <label for="processShowExamples" style="margin:0">Incluir ejemplos de MEDDIC/Challenger</label>
+            </div>
+          </div>
+        </div>
+        <div class="copy-wrap">
+          <button class="copy-btn" data-target="processPrompt">Copiar prompt completo</button>
+          <label>Prompt de IA (Ultimate Edition)</label>
+          <pre id="processPrompt"></pre>
+        </div>
+        <div class="advanced-toggle" data-target="process-advanced">
+          <strong>▼ Mostrar opciones avanzadas y recursos</strong><span class="advanced-toggle-icon">▼</span>
+        </div>
+        <div class="advanced-content" id="process-advanced">
+          <div class="quality-checklist">
+            <h4>Lista de control de calidad</h4>
+            <ul class="list">
+              <li>Progresión de etapa vinculada a acciones del comprador</li>
+              <li>Criterios de calificación aplicables</li>
+              <li>Criterios de salida evitan avances prematuros</li>
+              <li>Cadencia de revisión de acuerdos establecida</li>
+              <li>Formación de metodología completada</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- RevOps -->
+      <div class="tab-content" data-tab-content="revops">
+        <div class="info-box">
+          <h4 style="margin-top:0">Conoce a Jaime Gomez – Arquitecto de Sistemas y Especialista en RevOps</h4> 
+          <p><strong>8 años</strong> de experiencia en la diseñación de stacks técnicos, la construcción de integraciones y la automatización de operaciones de ingresos.</p>
+          <p>Piensa paso a paso: evaluar necesidades→evaluar herramientas→integrar→automatizar→entrenar→monitorizar→optimizar.</p>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>Modo</label>
+            <select id="revopsMode" class="input">
+              <option value="stack">Arquitectura de stack técnico</option>
+              <option value="integration">Diseño de integración</option>
+              <option value="automation">Flujos de automatización</option>
+              <option value="roadmap">Mapa de RevOps</option>
+            </select>
+            <div class="note" id="revopsModeHelp">Stack: CRM, engagement, analytics, arquitectura de flujo de datos.</div>
+          </div>
+          <div class="col-6">
+            <label>Mostrar ejemplos</label>
+            <div class="checkbox-group">
+              <input id="revopsShowExamples" type="checkbox">
+              <label for="revopsShowExamples" style="margin:0">Incluir patrones de integración</label>
+            </div>
+          </div>
+        </div>
+        <div class="copy-wrap">
+          <button class="copy-btn" data-target="revopsPrompt">Copiar prompt completo</button>
+          <label>Prompt de IA (Ultimate Edition)</label>
+          <pre id="revopsPrompt"></pre>
+        </div>
+        <div class="advanced-toggle" data-target="revops-advanced">
+          <strong>▼ Mostrar opciones avanzadas y recursos</strong><span class="advanced-toggle-icon">▼</span>
+        </div>
+        <div class="advanced-content" id="revops-advanced">
+          <div class="quality-checklist">
+            <h4>Lista de control de calidad</h4>
+            <ul class="list">
+              <li>Herramientas integradas (no silos de datos)</li>
+              <li>Automatización reduce el trabajo manual</li>
+              <li>Rendimiento del sistema monitorizado</li>
+              <li>Proceso de gestión de cambios definido</li>
+              <li>Documentación mantenida</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUTOMATION -->
+    <section class="panel" id="page-automation" style="display:none">
+      <h2>⚡ Automatización y Programación</h2>
+      <div class="info-box">
+        <h4 style="margin-top:0">Acciones programadas y tareas recurrentes</h4>
+        <p>Utiliza estos prompts con las acciones programadas de ChatGPT o las plataformas de automatización. Cada uno incluye el formato VEVENT de programación.</p>
+      </div>
+
+      <div class="card">
+        <h3>📊 Snapshot del pipeline diario (Mañana)</h3>
+        <p class="note">Programación: Diariamente a las 8:00 AM</p>
+        <div class="copy-wrap">
+          <button class="copy-btn" data-target="auto_pipeline">Copiar prompt</button>
+          <pre id="auto_pipeline">Crear mi snapshot del pipeline diario:
+
+1. Oportunidades abiertas por etapa y categoría de previsión
+2. Acuerdos cerrados esta semana/mes
+3. Acuerdos en estado de estancamiento (no actividad >7 días)
+4. Ratio de cobertura por segmento
+5. Top 5 acuerdos en riesgo que requieren atención
+
+Formato como un email escanable con métricas clave.
+
+PROGRAMACIÓN (ChatGPT):
+INICIO:VEVENT
+REGLA:FREQ=DIARIA;PORHORA=8;PORMINUTO=0;PORSEGUNDO=0
+FIN:VEVENT
+
+Contexto de la empresa: [Tus configuraciones auto-incluidas en el modo Universal Agent]</pre>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>📅 Preparación de previsión semanal (Viernes)</h3>
+        <p class="note">Programación: Cada viernes a las 2:00 PM</p>
+        <div class="copy-wrap">
+          <button class="copy-btn" data-target="auto_forecast">Copiar prompt</button>
+          <pre id="auto_forecast">Preparar paquete de llamada de previsión semanal:
+
+1. Commit/upside/pipeline por rep
+2. Movimiento desde la semana pasada (nuevo, resbalado, cerrado)
+3. Cambios a nivel de acuerdo que requieren discusión
+4. Tendencias de cobertura y velocidad
+5. Evaluación de riesgos y planes de mitigación
+
+PROGRAMACIÓN (ChatGPT):
+COMIENZO: VEVENTO
+REGLA:FREQ=SEMANAL;PORDIA=VI;PORHORA=14;PORMINUTO=0;PORSEGUNDO=0
+FINAL: VEVENTO</pre>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🎯 Informe de cumplimiento de cuota (Mensual)</h3>
+        <p class="note">Programación: Cada 1 de cada mes a las 9:00 AM</p>
+        <div class="copy-wrap">
+          <button class="copy-btn" data-target="auto_quota">Copiar prompt</button>
+          <pre id="auto_quota">Resumen de cumplimiento de cuota mensual:
+
+1. Cumplimiento de equipo/individual vs objetivo
+2. Reservas por segmento, producto, región
+3. Top performers & reconocimiento
+4. Reps por debajo de objetivo y soporte necesario
+5. Tendencias e insights para el próximo mes
+
+PROGRAMACIÓN (ChatGPT):
+COMIENZO: VEVENTO
+REGLA:FREQ=MENSUAL;PORDIA=1;PORHORA=9;PORMINUTO=0;PORSEGUNDO=0
+FINAL: VEVENTO</pre>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🔍 Auditoría de calidad de datos (Semanal)</h3>
+        <p class="note">Programación: Cada lunes a las 10:00 AM</p>
+        <div class="copy-wrap">
+          <button class="copy-btn" data-target="auto_data">Copiar prompt</button>
+          <pre id="auto_data">Auditoría de calidad de datos de CRM semanal:
+
+1. Oportunidades faltan campos requeridos
+2. Oportunidades en estado de estancamiento (no actividad >30 días)
+3. Registros duplicados que requieren fusión
+4. Contactos sin cuentas
+5. Generar lista de tareas de limpieza con propietarios
+
+PROGRAMACIÓN (ChatGPT):
+COMIENZO: VEVENTO
+REGLA:FREQ=SEMANAL;PORDIA=MO;PORHORA=10;PORMINUTO=0;PORSEGUNDO=0
+FINAL: VEVENTO</pre>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>📈 Preparación de QBR (Trimestral)</h3>
+        <p class="note">Programación: 2 semanas antes del final del trimestre</p> 
+        <div class="copy-wrap">
+          <button class="copy-btn" data-target="auto_qbr">Copiar prompt</button>
+          <pre id="auto_qbr">Preparación de revisión trimestral:
+
+1. Performance vs targets (reservas, pipeline, tasa de cierre)
+2. Análisis de victorias y pérdidas clave
+3. Sales cycle & velocity trends
+4. Rendimiento por territorio/segmento
+5. Recomendaciones para el próximo trimestre
+
+Incluir visualizaciones y resumen ejecutivo.
+
+PROGRAMACIÓN (ChatGPT):
+COMIENZO: VEVENTO
+REGLA:FREQ=MENSUAL;PORDIA=15;PORMES=3,6,9,12
+FINAL: VEVENTO</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTEGRATIONS -->
+    <section class="panel" id="page-integrations" style="display:none">
+      <h2>🔗 Plantillas de integración</h2>
+      <p class="note">Guías de configuración completas para conectar tu stack de ventas con plataformas de automatización</p>
+
+      <div class="tabs">
+        <button class="tab-button active" data-tab="salesforce">Salesforce</button>
+        <button class="tab-button" data-tab="hubspot">HubSpot</button>
+        <button class="tab-button" data-tab="outreach">Outreach</button>
+      </div>
+
+      <!-- SALESFORCE -->
+      <div class="tab-content active" data-tab-content="salesforce">
+        <div class="info-box">
+          <h3 style="margin-top:0">☁️ Guía de integración de Salesforce</h3>
+          <p>Configuración completa para automatizar flujos de Salesforce con insights de IA, gestión de pipeline y automatización multiplataforma.</p>
+        </div>
+
+        <div class="integration-section">
+          <h3><span class="step-number">1</span>Configuración de autenticación de API</h3>
+          <div class="card">
+            <h4>Crear aplicación conectada</h4>
+            <ol class="list">
+              <li>Navegar a <strong>Configuración → Aplicaciones → Gestor de aplicaciones</strong></li>
+              <li>Hacer clic en <strong>Nueva aplicación conectada</strong></li>
+              <li>Habilitar configuraciones de OAuth</li>
+              <li>Agregar scopes de OAuth: Acceso completo (full), Realizar solicitudes en cualquier momento (refresh_token)</li>
+              <li>Guardar y copiar clave de consumidor y secreto</li>
+              <li>Obtener token de seguridad desde tu correo electrónico o <strong>Configuración → Configuración personal → Restablecer token de seguridad</strong></li>
+            </ol>
+            <div class="help-text">
+              <strong>Flujo de autenticación:</strong> OAuth 2.0 con flujo de nombre de usuario y contraseña o JWT bearer token flow para server-to-server.
+            </div>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="sf_auth">Copiar configuración</button>
+              <pre id="sf_auth">BASE_URL: https://your-instance.salesforce.com
+AUTH_URL: https://login.salesforce.com/services/oauth2/token
+API_VERSION: v59.0
+
+OAUTH CREDENTIALS:
+client_id: {consumer_key}
+client_secret: {consumer_secret}
+username: {your_email}
+password: {password}{security_token}
+grant_type: password
+
+// Sample auth request
+POST https://login.salesforce.com/services/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&client_id={client_id}&client_secret={client_secret}&username={username}&password={password}{security_token}
+
+// Response includes access_token and instance_url</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="integration-section">
+          <h3><span class="step-number">2</span>Endpoints y objetos esenciales</h3>
+          
+          <div class="card">
+            <h4>💼 Gestión de oportunidades</h4>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="sf_opportunities">Copiar endpoints</button>
+              <pre id="sf_opportunities">// Query opportunities
+GET /services/data/v59.0/query?q=SELECT Id,Name,StageName,Amount,CloseDate,Probability FROM Opportunity WHERE StageName='Proposal' AND CloseDate>=TODAY
+
+// Get specific opportunity
+GET /services/data/v59.0/sobjects/Opportunity/{id}
+
+// Create opportunity
+POST /services/data/v59.0/sobjects/Opportunity
+{
+  "Name": "Acme Corp - Enterprise Deal",
+  "AccountId": "001xx000003DGbQAAW",
+  "StageName": "Prospecting",
+  "CloseDate": "2025-06-30",
+  "Amount": 75000,
+  "Type": "New Business",
+  "LeadSource": "Inbound"
+}
+
+// Update opportunity
+PATCH /services/data/v59.0/sobjects/Opportunity/{id}
+{
+  "StageName": "Negotiation",
+  "Amount": 85000,
+  "NextStep": "Send final proposal",
+  "ForecastCategory": "Commit"
+}
+
+// Key fields:
+- StageName: Prospecting, Qualification, Proposal, Negotiation, Closed Won/Lost
+- ForecastCategoryName: Omitted, Pipeline, Best Case, Commit, Closed
+- Probability: 0-100 (auto-calculated or manual)</pre>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>👥 Gestión de cuentas y contactos</h4>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="sf_accounts">Copiar endpoints</button>
+              <pre id="sf_accounts">// Query accounts
+GET /services/data/v59.0/query?q=SELECT Id,Name,Industry,AnnualRevenue,NumberOfEmployees FROM Account WHERE Industry='Technology'
+
+// Create account
+POST /services/data/v59.0/sobjects/Account
+{
+  "Name": "Tech Startup Inc",
+  "Industry": "Technology",
+  "NumberOfEmployees": 250,
+  "AnnualRevenue": 10000000,
+  "BillingCity": "San Francisco",
+  "BillingState": "CA"
+}
+
+// Query contacts
+GET /services/data/v59.0/query?q=SELECT Id,Name,Title,Email,AccountId FROM Contact WHERE Title LIKE '%VP%'
+
+// Create contact
+POST /services/data/v59.0/sobjects/Contact
+{
+  "FirstName": "Jane",
+  "LastName": "Doe",
+  "Title": "VP Sales",
+  "Email": "jane.doe@example.com",
+  "AccountId": "001xx000003DGbQAAW"
+}</pre>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>📋 Tareas y actividades</h4>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="sf_tasks">Copiar endpoints</button>
+              <pre id="sf_tasks">// Create task
+POST /services/data/v59.0/sobjects/Task
+{
+  "Subject": "Follow up on demo",
+  "Status": "Not Started",
+  "Priority": "High",
+  "ActivityDate": "2025-02-15",
+  "WhoId": "{contact_id}",
+  "WhatId": "{opportunity_id}",
+  "Description": "Discuss pricing and timeline"
+}
+
+// Log a call
+POST /services/data/v59.0/sobjects/Task
+{
+  "Subject": "Call with decision maker",
+  "Status": "Completed",
+  "TaskSubtype": "Call",
+  "CallType": "Outbound",
+  "CallDurationInSeconds": 1800,
+  "WhoId": "{contact_id}",
+  "WhatId": "{opportunity_id}"
+}
+
+// Query activities
+GET /services/data/v59.0/query?q=SELECT Id,Subject,Status,ActivityDate FROM Task WHERE WhatId='{opportunity_id}' ORDER BY ActivityDate DESC</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="integration-section">
+          <h3><span class="step-number">3</span>Flujos de automatización</h3>
+          
+          <div class="card">
+            <h4>🤖 Puntuación de salud de pipeline de IA</h4>
+            <p class="muted">Puntuar la salud de las oportunidades y marcar oportunidades en riesgo</p>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="sf_health_flow">Copiar flujo</button>
+              <pre id="sf_health_flow">TRIGGER: Diariamente a las 9:00 AM o cuando se actualizan las oportunidades
+
+WORKFLOW:
+1. Query open opportunities:
+   GET /services/data/v59.0/query?q=SELECT Id,Name,StageName,Amount,CloseDate,CreatedDate,LastActivityDate,Probability FROM Opportunity WHERE IsClosed=false
+
+2. For each opportunity, calculate health score:
+   - Days in current stage (flag if >30 days)
+   - Days since last activity (flag if >7 days)
+   - Stage vs close date alignment
+   - Required fields completion
+   - Contact/activity engagement level
+
+3. AI Analysis:
+   Prompt: "Analyze this opportunity:
+   Name: {{opp.Name}}
+   Stage: {{opp.StageName}}
+   Amount: {{opp.Amount}}
+   Close Date: {{opp.CloseDate}}
+   Days in Stage: {{days_in_stage}}
+   Last Activity: {{days_since_activity}} days ago
+   
+   Provide:
+   1. Health score (0-100)
+   2. Risk factors
+   3. Recommended next actions"
+
+4. Update Salesforce:
+   PATCH /services/data/v59.0/sobjects/Opportunity/{{id}}
+   {
+     "Health_Score__c": {{ai_score}},
+     "Risk_Factors__c": "{{risk_list}}",
+     "Next_Best_Action__c": "{{recommendation}}"
+   }
+
+5. Notify rep if health score <50 via Slack/email</pre>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>📈 Actualización automática de categorías de previsión</h4>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="sf_forecast_flow">Copiar flujo</button>
+              <pre id="sf_forecast_flow">TRIGGER: Cambios de etapa de oportunidad o revisión semanal
+
+WORKFLOW:
+1. Query opportunities by close date & stage:
+   GET /services/data/v59.0/query?q=SELECT Id,Name,StageName,CloseDate,Amount,Probability FROM Opportunity WHERE CloseDate=THIS_QUARTER AND IsClosed=false
+
+2. Apply forecast category logic:
+   IF CloseDate < 30 days AND StageName IN ('Negotiation', 'Proposal'):
+     ForecastCategory = 'Commit'
+   ELSE IF StageName IN ('Qualification', 'Needs Analysis'):
+     ForecastCategory = 'Pipeline'
+   ELSE IF StageName IN ('Proposal', 'Negotiation'):
+     ForecastCategory = 'Best Case'
+   ELSE:
+     ForecastCategory = 'Omitted'
+
+3. Bulk update opportunities:
+   PATCH /services/data/v59.0/composite/sobjects
+   {
+     "allOrNone": false,
+     "records": [
+       {
+         "attributes": {"type": "Opportunity"},
+         "Id": "{{id1}}",
+         "ForecastCategoryName": "Commit"
+       },
+       ...
+     ]
+   }
+
+4. Generate forecast summary report and email to sales leadership</pre>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>🚨 Sistema de alerta de acuerdos en estado de estancamiento</h4>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="sf_stalled_flow">Copiar flujo</button>
+              <pre id="sf_stalled_flow">TRIGGER: Diariamente a las 10:00 AM
+
+WORKFLOW:
+1. Find stalled opportunities:
+   GET /services/data/v59.0/query?q=SELECT Id,Name,StageName,Amount,OwnerId,Owner.Email,LastActivityDate FROM Opportunity WHERE IsClosed=false AND LastActivityDate<LAST_N_DAYS:7
+
+2. For each stalled opp:
+   a. Get activity history count
+   b. Identify last touchpoint type
+   c. Check if close date approaching
+
+3. Create alert task:
+   POST /services/data/v59.0/sobjects/Task
+   {
+     "OwnerId": "{{opportunity.OwnerId}}",
+     "WhatId": "{{opportunity.Id}}",
+     "Subject": "ALERT: No activity on {{opportunity.Name}} in 7+ days",
+     "Priority": "High",
+     "Status": "Not Started",
+     "ActivityDate": "{{today}}",
+     "Description": "Last activity: {{last_activity_date}}. Close date: {{close_date}}. Recommended: Schedule call/demo ASAP."
+   }
+
+4. Send Slack notification:
+   "🚨 Stalled Deal Alert
+   {{opportunity.Name}} - ${{amount}}
+   Owner: {{owner.name}}
+   Last Activity: {{days}} days ago
+   Action: {{recommended_next_step}}"</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="integration-section">
+          <h3><span class="step-number">4</span>Reports & Analytics</h3>
+          
+          <div class="card">
+            <h4>📊 Pipeline Coverage Analysis</h4>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="sf_coverage">Copy Workflow</button>
+              <pre id="sf_coverage">TRIGGER: Weekly on Monday 8:00 AM
+
+DATA COLLECTION:
+1. Get quota by rep/team:
+   GET /services/data/v59.0/query?q=SELECT OwnerId,Owner.Name,SUM(Amount) FROM Opportunity WHERE IsClosed=true AND IsWon=true AND CloseDate=THIS_QUARTER GROUP BY OwnerId,Owner.Name
+
+2. Get open pipeline by rep:
+   GET /services/data/v59.0/query?q=SELECT OwnerId,Owner.Name,SUM(Amount) FROM Opportunity WHERE IsClosed=false AND CloseDate=THIS_QUARTER GROUP BY OwnerId,Owner.Name
+
+3. Calculate metrics:
+   - Pipeline coverage = Open Pipeline ÷ Remaining Quota
+   - Target coverage = 3-4x
+   - Gap = Required Pipeline - Current Pipeline
+
+4. Generate report:
+   Rep | Quota | Closed | Remaining | Pipeline | Coverage | Gap
+   ----+-------+--------+-----------+----------+----------+----
+   A   | 500K  | 200K   | 300K      | 750K     | 2.5x     | 150K
+   B   | 500K  | 300K   | 200K      | 800K     | 4.0x     | -200K
+
+5. Send to sales leadership with color coding:
+   - Green: Coverage >3x
+   - Yellow: Coverage 2-3x
+   - Red: Coverage <2x</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚡ Límites de API y mejores prácticas</h4>
+          <ul class="list">
+            <li><strong>Límites de API:</strong> Varían por edición; Enterprise típicamente 1000+ llamadas/día</li>
+            <li><strong>Operaciones en lote:</strong> Usar Bulk API 2.0 para conjuntos de datos grandes (>2000 registros)</li>
+            <li><strong>Consultas SOQL:</strong> Máximo 20,000 registros por consulta; usar paginación para conjuntos más grandes</li>
+            <li><strong>Límites de campo:</strong> Respetar límites de campo personalizados por objeto (Enterprise: 800)</li>
+            <li><strong>API compuesta:</strong> Batch up to 25 subrequests en una sola llamada</li>
+            <li><strong>Sandboxes:</strong> Siempre probar en sandbox antes de la implementación en producción</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- HUBSPOT -->
+      <div class="tab-content" data-tab-content="hubspot">
+        <div class="info-box">
+          <h3 style="margin-top:0">🟠 Guía de integración de HubSpot</h3>
+          <p>Guía completa de automatización para CRM de HubSpot, gestión de acuerdos y flujos de ventas con IA.</p>
+        </div>
+
+        <div class="integration-section">
+          <h3><span class="step-number">1</span>Configuración de autenticación de API</h3>
+          <div class="card">
+            <h4>Generar token de acceso de aplicación privada</h4>
+            <ol class="list">
+              <li>Navegar a <strong>Configuración → Integraciones → Aplicaciones privadas</strong></li>
+              <li>Hacer clic en <strong>Crear aplicación privada</strong></li>
+              <li>Nombre: "Sales Ops Automation"</li>
+              <li>Seleccionar scopes: crm.objects.deals, crm.objects.contacts, crm.objects.companies</li>
+              <li>Hacer clic en <strong>Crear aplicación</strong> y copiar token de acceso</li>
+            </ol>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="hs_auth">Copiar configuración</button>
+              <pre id="hs_auth">BASE_URL: https://api.hubapi.com
+AUTH_METHOD: Bearer Token
+ACCESS_TOKEN: your_access_token_here
+
+HEADERS:
+Authorization: Bearer {access_token}
+Content-Type: application/json</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="integration-section">
+          <h3><span class="step-number">2</span>Endpoints esenciales</h3>
+          
+          <div class="card">
+            <h4>💼 Gestión de acuerdos</h4>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="hs_deals">Copiar endpoints</button>
+              <pre id="hs_deals">// List deals
+GET /crm/v3/objects/deals?properties=dealname,amount,closedate,dealstage,pipeline
+
+// Get specific deal
+GET /crm/v3/objects/deals/{dealId}?properties=dealname,amount,dealstage
+
+// Create deal
+POST /crm/v3/objects/deals
+{
+  "properties": {
+    "dealname": "Acme Corp Deal",
+    "amount": "50000",
+    "closedate": "2025-06-30",
+    "dealstage": "qualifiedtobuy",
+    "pipeline": "default"
+  }
+}
+
+// Update deal
+PATCH /crm/v3/objects/deals/{dealId}
+{
+  "properties": {
+    "dealstage": "presentationscheduled",
+    "amount": "55000",
+    "hs_forecast_category": "bestcase"
+  }
+}
+
+// Associate deal with company/contact
+PUT /crm/v3/objects/deals/{dealId}/associations/companies/{companyId}/{associationTypeId}</pre>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>📊 Gestión de pipeline y etapas</h4>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="hs_pipeline">Copiar endpoints</button>
+              <pre id="hs_pipeline">// Get pipelines
+GET /crm/v3/pipelines/deals
+
+// Get pipeline stages
+GET /crm/v3/pipelines/deals/{pipelineId}/stages
+
+// Search deals by stage
+POST /crm/v3/objects/deals/search
+{
+  "filterGroups": [
+    {
+      "filters": [
+        {
+          "propertyName": "dealstage",
+          "operator": "EQ",
+          "value": "closedwon"
+        },
+        {
+          "propertyName": "closedate",
+          "operator": "GTE",
+          "value": "2025-01-01"
+        }
+      ]
+    }
+  ],
+  "properties": ["dealname", "amount", "closedate"]
+}</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="integration-section">
+          <h3><span class="step-number">3</span>Flujos de automatización</h3>
+          
+          <div class="card">
+            <h4>🤖 Calificación de acuerdos de IA</h4>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="hs_qualify_flow">Copiar flujo</button>
+              <pre id="hs_qualify_flow">TRIGGER: Deal enters "Qualification" stage
+
+WORKFLOW:
+1. Get deal details + associated contact/company:
+   GET /crm/v3/objects/deals/{dealId}?associations=contacts,companies
+
+2. AI Qualification Check:
+   "Evaluate this deal for qualification:
+   Deal: {{dealname}}
+   Amount: {{amount}}
+   Company: {{company.name}} ({{company.industry}}, {{company.employees}})
+   Contact: {{contact.jobtitle}}
+   
+   Using BANT criteria:
+   - Budget: Does amount align with company size?
+   - Authority: Is contact a decision maker?
+   - Need: Do we have pain point info?
+   - Timeline: Is close date realistic?
+   
+   Return JSON:
+   {
+     'qualified': true/false,
+     'confidence': 0-100,
+     'missing_info': [],
+     'recommendations': []
+   }"
+
+3. Update deal:
+   PATCH /crm/v3/objects/deals/{dealId}
+   {
+     "properties": {
+       "qualification_score": "{{confidence}}",
+       "next_steps": "{{recommendations}}"
+     }
+   }
+
+4. If not qualified, create task for rep</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚡ Límites de API y mejores prácticas</h4>
+          <ul class="list">
+            <li><strong>Límite de API:</strong> 100 solicitudes por 10 segundos (varía por suscripción)</li>
+            <li><strong>Operaciones en lote:</strong> Usar endpoints en lote para crear/actualizar en masa</li>
+            <li><strong>API de búsqueda:</strong> Más flexible que filtros para consultas complejas</li>
+            <li><strong>Asociaciones:</strong> Usar endpoints de asociación para enlazar registros</li>
+            <li><strong>Webhooks:</strong> Configurar para notificaciones en tiempo real</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- OUTREACH -->
+      <div class="tab-content" data-tab-content="outreach">
+        <div class="info-box">
+          <h3 style="margin-top:0">📧 Guía de integración de Outreach</h3>
+          <p>Guía de configuración para automatizar secuencias de Outreach.io, tracking engagement, and syncing with CRM.</p>
+        </div>
+
+        <div class="integration-section">
+          <h3><span class="step-number">1</span>Configuración de autenticación de API</h3>
+          <div class="card">
+            <h4>Generar clave de API</h4>
+            <ol class="list">
+              <li>Navegar a <strong>Configuración → Claves de API</strong></li>
+              <li>Hacer clic en <strong>Generar nueva clave</strong></li>
+              <li>Copiar clave de API y identificador de aplicación</li>
+            </ol>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="or_auth">Copiar configuración</button>
+              <pre id="or_auth">BASE_URL: https://api.outreach.io/api/v2
+AUTH_METHOD: Bearer Token
+
+HEADERS:
+Authorization: Bearer {api_key}
+Content-Type: application/vnd.api+json</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="integration-section">
+          <h3><span class="step-number">2</span>Endpoints clave</h3>
+          
+          <div class="card">
+            <h4>📧 Prospectos y secuencias</h4>
+            <div class="copy-wrap">
+              <button class="copy-btn" data-target="or_prospects">Copiar endpoints</button>
+              <pre id="or_prospects">// List prospects
+GET /prospects?filter[stage]=active
+
+// Add prospect to sequence
+POST /sequenceStates
+{
+  "data": {
+    "type": "sequenceState",
+    "relationships": {
+      "prospect": {
+        "data": {"type": "prospect", "id": {prospect_id}}
+      },
+      "sequence": {
+        "data": {"type": "sequence", "id": {sequence_id}}
+      }
+    }
+  }
+}
+
+// Get prospect engagement
+GET /prospects/{id}?include=calls,emails,meetings</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚡ Mejores prácticas</h4>
+          <ul class="list">
+            <li><strong>Límite de API:</strong> 10,000 solicitudes por hora</li>
+            <li><strong>Webhooks:</strong> Usar para tracking de engagement en tiempo real</li>
+            <li><strong>Sync con CRM:</strong> Sync bidireccional para logging de actividades</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SAVE & SHARE -->
+    <section class="panel" id="page-save" style="display:none">
+      <h2>💾 Guardar y compartir</h2>
+      <div class="tabs">
+        <button class="tab-button active" data-tab="export">📁 Exportar</button>
+        <button class="tab-button" data-tab="universal">🤖 Universal</button>
+      </div>
+
+      <div class="tab-content active" data-tab-content="export">
+        <div class="card">
+          <h3>💾 Exportar configuración</h3>
+          <p>Guarda tu configuración como JSON para reutilizar o compartir con tu equipo.</p>
+          <button class="btn primary" id="btnExport">Descargar Configuración</button>
+        </div>
+        <div class="card">
+          <h3>📥 Importar Configuración</h3>
+          <p>Carga una configuración previamente guardada.</p>
+          <input type="file" id="importFile" accept="application/json" class="input">
+        </div>
+        <div class="card">
+          <h3>🔄 Restablecer</h3>
+          <p>Empezar de nuevo con la configuración predeterminada.</p>
+          <button class="btn danger" id="btnReset">Restablecer Todas las Configuraciones</button>
+        </div>
+      </div>
+
+      <div class="tab-content" data-tab-content="universal">
+        <div class="info-box">
+          <h4 style="margin-top:0">Modo agente universal</h4>
+          <p>Incrusta tu configuración en este HTML y descarga. Sube a ChatGPT Knowledge o Claude Project; la IA enrutará automáticamente al agente de sales ops correcto.</p>
+        </div>
+        <button class="btn primary" id="btnEmbedDownload">📥 Incrustar configuración y descargar</button>
+        <div id="embedStatus" style="display:none;margin-top:10px">
+          <div class="info-box"><strong>✅ Éxito</strong><p class="note">Revisa tu carpeta de descargas.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HELP -->
+    <section class="panel" id="page-help" style="display:none">
+      <h2>❓ Ayuda</h2>
+      <div class="card">
+        <h3>Acerca de la T-ayudo </h3>
+        <p>Esta edición proporciona 9 agentes especializados de operaciones de ventas con experiencia del mundo real, ayudantes interactivos, recetas de automatización y guías de integración específicas de plataforma.</p>
+        <p><strong>Qué hace esto diferente:</strong> Estos agentes incorporan las mejores prácticas de sales ops con pensamiento paso a paso, manuales tácticos para gestión de pipeline, pronósticos, diseño de territorios y más.</p>
+      </div>
+      <div class="card">
+        <h3>Guía de Inicio Rápido</h3>
+        <ol class="list">
+          <li><strong>Configuración:</strong> Completa los detalles de la empresa, objetivos de ventas, ICP, stack tecnológico</li>
+          <li><strong>Elegir Agente:</strong> Selecciona de entre 9 agentes especializados según tu tarea</li>
+          <li><strong>Seleccionar Modo:</strong> Elige el tipo de salida específico que necesitas</li>
+          <li><strong>Usar Ayudantes:</strong> Completa formularios interactivos para plantillas instantáneas</li>
+          <li><strong>Copiar Prompt:</strong> Obtén tu prompt personalizado y rico en contexto</li>
+          <li><strong>Ejecutar en IA:</strong> Pega en ChatGPT o Claude</li>
+          <li><strong>Automatizar:</strong> Configura tareas recurrentes usando la pestaña Automatización</li>
+          <li><strong>Integrar:</strong> Conecta tus herramientas usando las guías de Integración</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" crossorigin="anonymous"></script>
+<script>
+(function(){
+  'use strict';
+
+  const SUPABASE_URL = 'https://satawflinlqhjqvfzmas.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNhdGF3ZmxpbmxxaGpxdmZ6bWFzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1ODY5MTUwMCwiZXhwIjoyMDc0MjY3NTAwfQ.U0pWE_53-daJHDyMB3DYZuCpDZIcMlBaOIfpAobYub8';
+
+  let supabaseClient = null;
+  let authSession = null;
+  let appHydrated = false;
+  let authListenersReady = false;
+  
+  const STORAGE_KEY = 'sales_ops_settings_ultimate';
+  const WIZARD_KEY = 'sales_ops_wizard_complete_ultimate';
+  
+  const DEFAULTS = {
+    companyName:"", productService:"", industry:"b2b_saas",
+    targetMarket:"Mid-market & Enterprise B2B",
+    icp:"Perfil de cliente ideal: [industria], [tamaño], [puntos de dolor], [presupuesto]",
+    salesModel:"Ventas Directas\nVentas Internas\nCanal/Socio",
+    avgDealSize:50000, salesCycleLength:90,
+    regions:"North America", fiscalYearEnd:"December 31", quotaPeriod:"Quarterly",
+    pipelineCoverageTarget:3, winRateTarget:25, forecastAccuracyTarget:90, quotaAttainmentTarget:100,
+    currency:"$", tone:"strategic",
+    primaryGoal:"Increase win rate and forecast accuracy",
+    okrs:"Q Goals: Pipeline 3x coverage; Win rate ≥ 25%; Forecast accuracy ≥ 90%; Quota attainment 100%",
+    salesMethodology:"MEDDIC, Challenger, Venta de Soluciones",
+    crmSystem:"Salesforce", salesStack:"Outreach; Gong; LinkedIn Sales Navigator",
+    analyticsStack:"Tableau; Clari; InsightSquared",
+    automationStack:"Zapier; Make; n8n",
+    contentPillars:"Pitch Decks\nCase Studies\nROI Calculators\nBattle Cards",
+    industryTemplate:"b2b_saas",
+    selectedPlaybooks:["Pipeline Review Framework","Forecasting Methodology","Deal Review Checklist","Territory Planning Model","Sales Process Stages"]
+  };
+
+  const INDUSTRY_TEMPLATES = {
+    b2b_saas:{label:"B2B SaaS",model:"Direct Sales\nInside Sales\nPartner",pillars:"Product Demos\nCase Studies\nROI Calculators\nSecurity Docs",methodology:"MEDDIC, Product-Led"},
+    enterprise_software:{label:"Enterprise Software",model:"Direct Sales\nField Sales",pillars:"RFP Responses\nProof of Concept\nExecutive Decks\nWhitepapers",methodology:"Challenger, Venta de Soluciones"},
+    fintech:{label:"Fintech",model:"Inside Sales\nPartner Channel",pillars:"Compliance Docs\nIntegration Guides\nROI Models\nCase Studies",methodology:"Value Selling, SPIN"}
+  };
+
+  const PLAYBOOKS = {
+    "Pipeline Review Framework":"PLAYBOOK: Pipeline Review\n- Stage-by-stage inspection\n- Deal quality assessment (MEDDIC/BANT)\n- Next actions & owners\n- Risk identification",
+    "Forecasting Methodology":"PLAYBOOK: Forecasting\n- Commit/Upside/Pipeline categories\n- Deal progression tracking\n- Accuracy measurement\n- Roll-up process",
+    "Deal Review Checklist":"PLAYBOOK: Deal Review\n- Business case validation\n- Stakeholder mapping\n- Competition analysis\n- Close plan",
+    "Territory Planning Model":"PLAYBOOK: Territory Planning\n- TAM analysis by segment\n- Account distribution\n- Quota allocation\n- Balance metrics",
+    "Sales Process Stages":"PLAYBOOK: Sales Process\n- Stage definitions\n- Entry/exit criteria\n- Required activities\n- Duration benchmarks"
+  };
+
+  const byId = id => document.getElementById(id);
+  const getVal = id => {
+    const el = byId(id);
+    return el ? (el.value || "").trim() : "";
+  };
+  const setVal = (id, v) => {
+    const el = byId(id);
+    if(el) el.value = v || "";
+  };
+
+  function showAuthFeedback(message, isError = false){
+    const feedback = byId('authFeedback');
+    if(!feedback) return;
+    feedback.textContent = message || '';
+    feedback.classList.toggle('error', !!isError);
+    feedback.style.display = message ? 'block' : 'none';
+  }
+
+  function setAuthView(target){
+    const view = target === 'signup' ? 'signup' : 'signin';
+    document.querySelectorAll('[data-auth-tab]').forEach(btn=>{
+      btn.classList.toggle('active', btn.dataset.authTab === view);
+    });
+    document.querySelectorAll('[data-auth-view]').forEach(form=>{
+      form.classList.toggle('active', form.dataset.authView === view);
+    });
+    showAuthFeedback('');
+  }
+
+  function updateAuthUI(session){
+    const emailLabel = byId('authUserEmail');
+    const signOutBtn = byId('authSignOut');
+    if(session){
+      if(emailLabel) emailLabel.textContent = session.user?.email ? `Signed in as ${session.user.email}` : '';
+      if(signOutBtn) signOutBtn.style.display = 'inline-flex';
+    }else{
+      if(emailLabel) emailLabel.textContent = '';
+      if(signOutBtn) signOutBtn.style.display = 'none';
+    }
+  }
+
+  function lockApp(){
+    document.body.classList.add('auth-locked');
+    updateAuthUI(null);
+  }
+
+  function unlockApp(){
+    document.body.classList.remove('auth-locked');
+  }
+
+  function setAuthLoading(isLoading){
+    document.querySelectorAll('#authGate button').forEach(btn=>{
+      if(isLoading){
+        btn.disabled = true;
+        btn.classList.add('disabled');
+      }else{
+        btn.disabled = false;
+        btn.classList.remove('disabled');
+      }
+    });
+  }
+
+  function registerAuthListeners(){
+    if(authListenersReady) return;
+    authListenersReady = true;
+
+    document.querySelectorAll('[data-auth-tab]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        setAuthView(btn.dataset.authTab);
+      });
+    });
+
+    const signInForm = byId('authSignInForm');
+    if(signInForm){
+      signInForm.addEventListener('submit', async evt=>{
+        evt.preventDefault();
+        if(!supabaseClient){
+          showAuthFeedback('Supabase is not configured.', true);
+          return;
+        }
+        const email = byId('signinEmail')?.value.trim();
+        const password = byId('signinPassword')?.value.trim();
+        if(!email || !password){
+          showAuthFeedback('Please provide email and password.', true);
+          return;
+        }
+        setAuthLoading(true);
+        const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+        setAuthLoading(false);
+        if(error){
+          showAuthFeedback(error.message, true);
+        }else{
+          showAuthFeedback('Welcome back!', false);
+        }
+      });
+    }
+
+    const signUpForm = byId('authSignUpForm');
+    if(signUpForm){
+      signUpForm.addEventListener('submit', async evt=>{
+        evt.preventDefault();
+        if(!supabaseClient){
+          showAuthFeedback('Supabase is not configured.', true);
+          return;
+        }
+        const email = byId('signupEmail')?.value.trim();
+        const password = byId('signupPassword')?.value.trim();
+        if(!email || !password){
+          showAuthFeedback('Please provide email and password.', true);
+          return;
+        }
+        setAuthLoading(true);
+        const { data, error } = await supabaseClient.auth.signUp({
+          email,
+          password,
+          options:{ emailRedirectTo: window.location.origin }
+        });
+        setAuthLoading(false);
+        if(error){
+          showAuthFeedback(error.message, true);
+          return;
+        }
+        if(data?.session){
+          showAuthFeedback('Cuenta creada, has iniciado sesión.', false); 
+        }else{
+          showAuthFeedback('Revisa tu bandeja de entrada para confirmar tu correo electrónico.', false);
+        }
+      });
+    }
+
+    const signOutBtn = byId('authSignOut');
+    if(signOutBtn){
+      signOutBtn.addEventListener('click', async ()=>{
+        if(!supabaseClient) return;
+        setAuthLoading(true);
+        const { error } = await supabaseClient.auth.signOut();
+        setAuthLoading(false);
+        if(error){
+          showAuthFeedback(error.message, true);
+        }else{
+          showAuthFeedback('Session closed.', false);
+        }
+      });
+    }
+
+    setAuthView('signin');
+  }
+
+  let wizardStep = 1;
+
+  function currentSettings(){
+    return {
+      companyName:getVal("companyName"),
+      productService:getVal("productService"),
+      industry:getVal("industry")||"b2b_saas",
+      targetMarket:getVal("targetMarket"),
+      icp:getVal("icp"),
+      salesModel:getVal("salesModel"),
+      avgDealSize:Number(getVal("avgDealSize")||50000),
+      salesCycleLength:Number(getVal("salesCycleLength")||90),
+      regions:getVal("regions"),
+      fiscalYearEnd:getVal("fiscalYearEnd"),
+      quotaPeriod:getVal("quotaPeriod"),
+      pipelineCoverageTarget:Number(getVal("pipelineCoverageTarget")||3),
+      winRateTarget:Number(getVal("winRateTarget")||25),
+      forecastAccuracyTarget:Number(getVal("forecastAccuracyTarget")||90),
+      quotaAttainmentTarget:Number(getVal("quotaAttainmentTarget")||100),
+      currency:getVal("currency")||"$",
+      tone:getVal("tone"),
+      primaryGoal:getVal("primaryGoal"),
+      okrs:getVal("okrs"),
+      salesMethodology:getVal("salesMethodology"),
+      crmSystem:getVal("crmSystem"),
+      salesStack:getVal("salesStack"),
+      analyticsStack:getVal("analyticsStack"),
+      automationStack:getVal("automationStack"),
+      contentPillars:getVal("contentPillars"),
+      industryTemplate:getVal("industryTemplate")||"b2b_saas",
+      selectedPlaybooks:getSelectedPlaybooks()
+    };
+  }
+
+  function saveSettings(){
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(currentSettings()));
+      updateSetupBadge();
+    } catch(e) {
+      console.error('Save error:', e);
+    }
+  }
+
+  function loadSettings(){
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      const data = raw ? JSON.parse(raw) : DEFAULTS;
+      Object.keys(DEFAULTS).forEach(k => {
+        if(data[k] !== undefined) setVal(k, data[k]);
+      });
+    } catch(e) {
+      console.error('Load error:', e);
+    }
+  }
+
+  function updateSetupBadge(){
+    const s = currentSettings();
+    const complete = !!(s.companyName && s.productService && s.icp);
+    const badge = byId("setupBadge");
+    if(!badge) return;
+    badge.className = "status-badge "+(complete?"complete":"incomplete");
+    badge.textContent = complete?"Complete":"Incomplete";
+  }
+
+  function getSelectedPlaybooks(){
+    const checkboxes = document.querySelectorAll('[data-pb-name]');
+    return Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.getAttribute('data-pb-name'));
+  }
+
+  function renderIndustryChips(){
+    const wrap = byId("industryChips");
+    if(!wrap) return;
+    wrap.innerHTML = "";
+    const curr = getVal("industryTemplate")||"b2b_saas";
+    Object.entries(INDUSTRY_TEMPLATES).forEach(([key, v])=>{
+      const chip = document.createElement("div");
+      chip.style.cssText = "padding:6px 10px;border-radius:999px;border:1px solid #334155;background:#1e293b;cursor:pointer;transition:all .2s";
+      if(key===curr) chip.style.outline = "2px solid var(--accent)";
+      chip.setAttribute("data-industry", key);
+      chip.textContent = v.label;
+      chip.onclick = () => applyIndustryTemplate(key);
+      wrap.appendChild(chip);
+    });
+  }
+
+  function applyIndustryTemplate(key){
+    const preset = INDUSTRY_TEMPLATES[key];
+    if(!preset) return;
+    setVal('salesModel', preset.model);
+    setVal('contentPillars', preset.pillars);
+    setVal('salesMethodology', preset.methodology);
+    setVal('industryTemplate', key);
+    setVal('industry', key);
+    saveSettings();
+    renderIndustryChips();
+  }
+
+  function renderPlaybooks(){
+    const list = byId("playbookList");
+    if(!list) return;
+    list.innerHTML = "";
+    const sel = new Set(currentSettings().selectedPlaybooks||[]);
+    Object.keys(PLAYBOOKS).forEach(name=>{
+      const id = "pb-"+name.replace(/\W+/g,"-");
+      const container = document.createElement("div");
+      container.className = "col-3";
+      container.innerHTML = `<div class="checkbox-group"><input type="checkbox" id="${id}" ${sel.has(name)?"checked":""} data-pb-name="${name}"><label for="${id}" style="margin:0">${name}</label></div>`;
+      list.appendChild(container);
+    });
+  }
+
+  function buildPlaybookOutput(){
+    const selected = getSelectedPlaybooks();
+    const blocks = selected.map(n=>PLAYBOOKS[n]).filter(Boolean);
+    const output = blocks.length?blocks.join("\n\n---\n\n"):"(no playbooks selected)";
+    const el = byId("playbookOutputSetup");
+    if(el){
+      el.textContent = output;
+      el.style.display = "block";
+    }
+  }
+
+  function renderWizardTemplates(){
+    const grid = byId("wizardTemplateGrid");
+    if(!grid) return;
+    grid.innerHTML = "";
+    Object.entries(INDUSTRY_TEMPLATES).forEach(([key, v])=>{
+      const card = document.createElement("div");
+      card.className = "template-card";
+      card.setAttribute("data-template", key);
+      card.innerHTML = `<h4>${v.label}</h4><p>${v.model.split('\n').slice(0,2).join(', ')}</p>`;
+      card.onclick = function(){
+        document.querySelectorAll('.template-card').forEach(c => c.classList.remove('selected'));
+        this.classList.add('selected');
+        setVal('industryTemplate', key);
+      };
+      grid.appendChild(card);
+    });
+  }
+
+  function generatePrompt(agent, s, mode, showExamples){
+    const company = s.companyName || "your company";
+    
+    const baseContext = `
+CONTEXTO DE LA EMPRESA:
+- Compañía: ${company}
+- Producto/Servicio: ${s.productService || "(not provided)"}
+- Industria: ${INDUSTRY_TEMPLATES[s.industry]?.label || s.industry}
+- Mercado objetivo: ${s.targetMarket}
+- ICP: ${s.icp}
+- Modelo de Ventas: ${(s.salesModel||"").split('\n').filter(Boolean).join(', ')}
+- Tamaño promedio de la oferta: ${s.currency}${s.avgDealSize.toLocaleString()}
+- Ciclo de ventas: ${s.salesCycleLength} days
+- Objetivo de tasa de ganancia: ${s.winRateTarget}%
+- Pipeline Coverage: ${s.pipelineCoverageTarget}x
+- Objetivo de precisión del pronóstico: ${s.forecastAccuracyTarget}%
+- Objetivo de cumplimiento de cuota: ${s.quotaAttainmentTarget}%
+- Metodología: ${s.salesMethodology}
+- CRM: ${s.crmSystem}
+- Tecnlogías: ${s.salesStack}
+- OKRs: ${s.okrs}
+`;
+
+    const playbooks = s.selectedPlaybooks || [];
+    const playbookText = playbooks.length ? playbooks.map(n=>PLAYBOOKS[n]).filter(Boolean).join('\n\n') : '';
+
+    // PIPELINE & FORECASTING PROMPTS
+    if(agent === 'pipeline'){
+      if(mode === 'review'){
+        return `Eres Sergio Aguilar, un experto en pipelines y pronósticos con 10 años de experiencia gestionando pipelines de ventas empresariales y mejorando la precisión de los pronósticos en empresas tecnológicas.
+${baseContext}
+
+TAREA: Crear un marco integral de revisión de la canalización para ${company}.
+
+SU EXPERIENCIA: - Desarrolló procesos de revisión de pipeline para más de 5 empresas SaaS B2B (con ingresos anuales recurrentes de entre 50 y 500 millones de dólares).
+- Mejoró la precisión de las previsiones del 65 % al 92 % mediante revisiones sistemáticas.
+- Experto en análisis del progreso de las negociaciones, métricas de velocidad e identificación de riesgos.
+- Capacitó a más de 100 gerentes de ventas en la inspección efectiva del pipeline.
+
+PROCESO PASO A PASO:
+
+1. PIPELINE SEGMENTATION
+  Analice el pipeline según múltiples dimensiones:
+  - Distribución por etapas (% de acuerdos en cada etapa vs. referencia óptima)
+  - Categoría de previsión (Comprometido / Mejor escenario / Pipeline / Omitido)
+  - Antigüedad del acuerdo (días en la etapa actual, total de días en el pipeline)
+  - Rangos de tamaño del acuerdo (< $25K, $25K-$100K, $100K+)
+  - Segmentación por representante/equipo
+  - Fecha de cierre prevista (esta semana/mes/trimestre)
+
+2. METODOLOGÍA DE PUNTUACIÓN DE SALUD
+  Para cada operación, evalúe:
+  a) PUNTUACIÓN DE CALIFICACIÓN (utilizando${s.salesMethodology}):
+      ${s.salesMethodology.includes('MEDDIC') ? `
+      - Métricas: ¿Se han identificado resultados empresariales cuantificados?
+      - Responsable económico: ¿Se ha confirmado el acceso a la persona que toma las decisiones?
+      - Criterios de decisión: ¿Se dispone de los requisitos por escrito/cuadro de mando?
+      - Proceso de decisión: ¿Se han definido el cronograma, las partes interesadas y la cadena de aprobación?
+      - Identificación del problema: ¿Se ha validado el problema empresarial crítico?
+      - Defensor: ¿Existe un promotor interno que promueva activamente la iniciativa?
+        Puntuación: 0-6 puntos (uno por cada elemento MEDDIC)` : ''}
+      
+   b) INDICADORES DE ACTIVIDAD:
+      - Días transcurridos desde la última actividad relevante (llamada, reunión, demostración)
+      - Nivel de interacción (apertura de correos electrónicos, descargas de contenido, uso del producto)
+      - Multihilo (número de contactos involucrados, número de departamentos)
+      
+   c) INDICADORES DE PROGRESIÓN: 
+      - Velocidad del escenario (tiempo esperado vs. real en el escenario) 
+      - Movimiento hacia adelante (acciones de avance completadas) 
+      - Banderas rojas (fantasma, retraso en la fecha, cambio de campeón)
+
+3. PLANTILLA DE INSPECCIÓN ACUERDO POR ACUERDO 
+  Para cada oportunidad importante, documente:
+   
+   [NOMBRE DE LA OPORTUNIDAD] - $[MONTO] - [ETAPA]
+   • Fecha de cierre: [FECHA] (Confianza: Alta/Media/Baja)
+   • Días en la etapa: [X] días (Esperado: [Y] días)
+   • Última actividad: [X] días atrás - [TIPO]
+   • Puntuación de salud: [0-10] (Calificación: X/6, Actividad: X/2, Progresión: X/2)
+   • Partes interesadas clave: [Decision Maker], [Champion], [Influencers]
+   • Competencia: [COMPETITOR o "Ninguna identificada"]
+   • Acciones siguientes (Fecha/Propietario):
+     1. [ACCION] - [FECHA] - [PROPIETARIO]
+     2. [ACCION] - [FECHA] - [PROPIETARIO]
+   • Factores de riesgo: [Listar cualquier preocupación]
+   • Recomendación: [Avanzar / Mantener / Pushear fuera / Descalificar]
+
+4. ANÁLISIS DE COBERTURA
+   Calcule y presente:
+   - Valor total del pipeline por segmento
+   - Ratio de cobertura: Pipeline ÷ Cuota (objetivo: ${s.pipelineCoverageTarget}x)
+   - Pipeline ponderado (monto × probabilidad de ganancia)
+   - Análisis de brechas: Pipeline requerido vs. estado actual
+   - Tasa de generación: Nuevo pipeline agregado por semana/mes
+   - Conversiones por etapa
+
+5. ACCIONES Y RESPONSABILIDAD
+   Generate specific, time-bound actions:
+   - Acuerdos que requieren atención inmediata (propietario, fecha límite)
+   - Brechas en el pipeline que requieren nuevas prospectaciones (propietario, objetivo)
+   - Progresión de etapa requerida esta semana (acuerdo, acción, propietario)
+   - Cambios en la categoría de previsión a proponer
+   - Oportunidades de coaching del gerente
+
+FORMATO DE SALIDA:
+Entregar un documento de revisión de pipeline completo con:
+✓ Executive Summary (3-5 bullet points)
+✓ Tablero de métricas generales de salud
+✓ Inspección acuerdo por acuerdo (todos los Comprometidos + casos de Best Case en riesgo)
+✓ Análisis de cobertura con gráficos
+✓ Acciones priorizadas con propietarios y fechas límite
+✓ Week-over-week trends
+
+${showExamples ? `
+
+EJEMPLO DE REVISIÓN DE ACUERDO:
+[Acme Corp - Plataforma Empresarial] - $85,000 - Negociación
+• Fecha de cierre: Feb 28 (Confianza: Media)
+• Días en la etapa: 12 días (Esperado: 14 días) ✓
+• Última actividad: 2 días atrás - Demo para VP de Ingeniería
+• Puntuación de salud: 7.5/10 (MEDDIC: 5/6, Actividad: 1.5/2, Progresión: 1/2)
+  - Faltante: Criterios de decisión por escrito
+  - Fuerte: Campeón (Director de Operations de Ventas), Acceso al Responsable Económico
+• Partes interesadas clave: 
+  - Responsable Económico: Sarah Chen, CRO
+  - Campeón: Mike Rodriguez, Director de Ventas  
+  - Influencer: VP de Ingeniería (validación técnica)
+• Competencia: SalesLoft (siendo evaluada en paralelo)
+• Acciones siguientes:
+  1. Obtener criterios de decisión por escrito/cuadro de mando - Feb 15 - Rep
+  2. Presentación ejecutiva con CRO - Feb 18 - Rep + VP de Ventas
+  3. Entrega de caso de negocio ROI - Feb 20 - Ingeniero de Soluciones
+• Factores de riesgo: 
+  - Aprobación de presupuesto retrasada debido a sobregasto en Q4
+  - Competencia ofreciendo un precio 20% más bajo
+• Recomendación: AVANZAR - Campeón fuerte, buena interacción, pero aprobación de presupuesto por escrito antes de moverse a Cerrado
+
+` : ''}
+
+LISTA DE VERIFICACIÓN DE CALIDAD:
+✓ Cada acuerdo tiene una puntuación de salud y acción siguiente
+✓ Ratio de cobertura calculado con precisión
+✓ Banderas rojas explícitamente llamadas
+✓ Acciones específicas y asignadas
+✓ Recomendaciones basadas en evidencia
+✓ Documento escanearable (encabezados, viñetas, tablas)
+
+${playbookText ? `\n---\nTACTICAL PLAYBOOKS:\n${playbookText}` : ''}`;
+      }
+      
+      if(mode === 'forecast'){
+        return `Eres Sergio Aguilar, un experto en pipelines y pronósticos con 10 años de experiencia gestionando llamadas de previsión y mejorando la precisión de los comprometidos.
+${baseContext}
+
+TAREA: Diseñar un agendamiento de llamadas de previsión semanales y procesos para ${company}.
+
+TU EXPERTISE:
+- Diseñó procesos de previsión para 8+ organizaciones de ventas
+- Mejorada la precisión de la previsión de la industria promedio (60%) a 90%+
+- Experto en categorías de previsión, criterios de comprometido y análisis de varianza
+- Capacitó a ejecutivos en la facilitación de llamadas de previsión
+
+METODOLOGÍA DE PREVISIÓN:
+
+1. CATEGORÍAS DE PREVISIÓN (Definiciones estrictas)
+   
+   COMPROMETIDO (90%+ confianza para cerrar este período):
+   ✓ Todos los elementos MEDDIC completos
+   ✓ Confirmación verbal del responsable económico
+   ✓ Contrato en revisión legal o pendiente de firmas
+   ✓ Presupuesto/PO confirmado
+   ✓ No hay bloqueos técnicos/procedurales
+   Regla: Si no apostarías tu comisión, no es un Comprometido
+   
+   MEJOR ESCENARIO (50-89% confianza):
+   ✓ Acuerdo en etapa de negociación o propuesta activa
+   ✓ Acceso al responsable económico
+   ✓ Campeón vendiendo activamente internamente
+   ✓ Fecha de cierre este trimestre con evidencia soporte
+   ✓ No hay banderas rojas mayores
+   
+   PIPELINE (10-49% confianza):
+   • Early stage (Prospecting, Qualification)
+   • Or: Later stage but missing key MEDDIC elements
+   • Or: Fecha de cierre este trimestre pero baja confianza
+   
+   OMITIDO (excluido de la previsión):
+   • Fecha de cierre en el próximo trimestre o más allá
+   • O: Detenido/inactivo por 30+ días
+   • O: Faltan demasiados elementos de calificación
+
+2. AGENDA DE LLAMADA DE PREVISIÓN SEMANAL (60 minutos)
+
+   [0-5 MIN] REVISIÓN GENERAL
+   • Team/company forecast vs. quota
+   • Comprometido | Mejor Escenario | Pipeline resumen
+   • Cambios semana a semana (acuerdos agregados, movidos, retrasados, cerrados)
+   
+   [5-15 MIN] REVISIÓN DE ACUERDOS CERRADOS
+   • Ganancias: ¿Qué llevó al cierre? Replicar!
+   • Pérdidas: ¿Por qué? ¿Qué podemos aprender?
+   • Análisis post-mortem de las pérdidas de previsión
+   
+   [15-35 MIN] COMPROMETIDOS DEEP DIVE
+   • Revisar cada acuerdo comprometido (o todos los acuerdos >$50K)
+   • Para cada acuerdo, validar:
+     - ¿Por qué es este Comprometido vs. Mejor Escenario?
+     - ¿Qué evidencia soporta la fecha de cierre?
+     - ¿Qué podría desviarlo?
+     - ¿Qué acciones ocurren esta semana para avanzar?
+   • Plantear suposiciones respetuosamente
+   
+   [35-50 MIN] MEJORES ESCENARIOS DE ACUERDOS (Selectivo)
+   • Revisar grandes acuerdos o acuerdos con preguntas
+   • ¿Puede algún acuerdo moverse a Comprometido esta semana?
+   • ¿Debe algún acuerdo moverse a Pipeline?
+   
+   [50-55 MIN] COBERTURA DE PIPELINE
+   • Ratio de cobertura por rep/segmento
+   • Tasa de generación de pipeline
+   • Brechas requiriendo acción inmediata
+   
+   [55-60 MIN] ACCIONES Y CERRAR
+   • Resumen de movimientos de acuerdos
+   • Confirmar acciones con propietarios
+   • Previsualizar la previsión de la próxima semana
+
+3. DOCUMENTACIÓN DE CAMBIOS DE PREVISIÓN
+   
+   Seguimiento de todos los movimientos semanalmente:
+   
+   NOMBRE DEL ACUERDO | CAMBIO DE CATEGORÍA | MOTIVO | FECHA
+   Acme Corp | Pipeline → Mejor Escenario | Reunión con responsable económico asegurada | Feb 12
+   TechCo    | Mejor Escenario → Comprometido | Contrato en legal, aprobación verbal | Feb 12
+   MegaCorp  | Comprometido → Mejor Escenario | Revisión legal retrasada 2 semanas | Feb 12
+   
+   Analizar patrones:
+   • ¿Qué % de Mejor Escenario realmente se cierra? (objetivo: ${s.winRateTarget}%+)
+   • ¿Qué % de Comprometido se retrasa? (objetivo: <10%)
+   • ¿Por qué se retrasan los acuerdos? (insights para coaching)
+
+4. TEMPLATE DE ENVÍO DE PREVISIÓN
+
+   [NOMBRE DE LA EQUIPA] - Previsión Semanal - Semana del [FECHA]
+   Cuota (Este Trimestre): $[AMOUNT]
+   Cerrados hasta la fecha: $[AMOUNT] ([X]% de cuota)
+   
+   COMPROMETIDO: $[AMOUNT] ([X] acuerdos)
+   • Acuerdo 1: $[AMOUNT] - [Fecha de cierre esperada] - [Rep]
+   • Acuerdo 2: $[AMOUNT] - [Fecha de cierre esperada] - [Rep]
+   [Listar todos los acuerdos comprometidos]
+   
+   MEJOR ESCENARIO: $[AMOUNT] ([X] acuerdos)  
+   [Top 5-10 acuerdos con monto, fecha de cierre, acción clave]
+   
+   TOTAL PREVISIÓN (Comprometido + Cerrado): $[AMOUNT] ([X]% de cuota)
+   PREVISIÓN ESTIRADA (+ Mejor Escenario): $[AMOUNT] ([X]% de cuota)
+   
+   PIPELINE: $[AMOUNT] ([X]x cobertura)
+   
+   CAMBIOS DE LA ÚLTIMA SEMANA:
+   • Movido a Cerrado: [Lista] 
+   • Movido a Confirmar: [Lista] 
+   • Resbalado/Empujado: [Lista]
+   
+   GENERACIÓN DE PIPELINE ESTA SEMANA: $[AMOUNT]
+   
+   RIESGOS Y CONCERNAS:
+   [Narrativa sobre cualquier riesgo de previsión]
+
+5. SEGUIMIENTO DE LA PRECISIÓN DE LA PREVISIÓN
+   
+   Medir semanalmente:
+   - Commit accuracy: (Acuerdos que cerraron ÷ Acuerdos previstos como Comprometido)
+   - Varianza de previsión: |Actual - Previsado| ÷ Cuota
+   - False positives: Acuerdos comprometidos que no cerraron
+   - Surprises: Acuerdos cerrados no en Comprometido
+   
+   Objetivos de métricas:
+   - Commit accuracy: >90%
+   - Varianza de previsión: <5%
+   - False positives: <2 por mes
+   - Surprises: <1 por trimestre
+
+6. MOMENTOS DE COACHING EN LLAMADAS DE PREVISIÓN
+   
+   Cuando los representantes sobre-previsan:
+   "Walk me through the MEDDIC. What's your evidence for each element?"
+   "¿Has recibido confirmación verbal del responsable económico?"
+   "¿Cuál es tu Plan B si la revisión legal toma 2 semanas más?"
+        
+   Cuando los representantes sub-previsan (sandbagging):
+   "Esto ha estado en Negociación por 4 semanas con todos los elementos MEDDIC completos. ¿Por qué no es este Comprometido?"
+   "Has entregado ROI, contratos están fuera, y el campeón dice 'sí.' ¿Cuál es tu preocupación?"
+
+FORMATO DE SALIDA:
+Entregar paquete completo de llamada de previsión incluyendo:
+✓ Forecast category definitions (customize to ${company})
+✓ Agenda de 60 minutos con bloques de tiempo y puntos de discusión
+✓ Template de envío de previsión
+✓ Formato de seguimiento de movimientos de acuerdos
+✓ Tablero de métricas de precisión
+✓ Banco de preguntas de coaching
+✓ Guía de facilitación para primeras veces
+
+${showExamples ? `
+
+EJEMPLO DE LLAMADA DE PREVISIÓN:
+
+Gerente: "Jordan, caminame a través del acuerdo de Acme Corp. Tienes clasificado como Comprometido para $85K cerrando el 28 de febrero."
+
+Rep: "Sí, completamos la demo final la semana pasada. El VP de Ingeniería lo amó, y el Campeón dice que están listos para avanzar."
+
+Gerente: "Eso es genial, pero ayúdame a entender la clasificación de Comprometido. ¿Has hablado directamente con el responsable económico?"
+
+Rep: "No, pero nuestro Campeón reporta al CRO y dice que está de acuerdo."
+
+Gerente: "Okay, tenemos validación del Campeón pero no confirmación del responsable económico. ¿Y el contrato - dónde está?"
+
+Rep: "Enviamos el contrato el viernes pasado. Su equipo legal lo tiene." 
+
+Gerente: "Entendido. Entonces el contrato está en revisión legal, no hay confirmación verbal del responsable económico todavía. Eso suena más como Mejor Escenario que Comprometido según nuestros criterios. El Campeón es fuerte, pero hasta que no escuchamos 'sí' del CRO directamente y tenemos una confirmación de presupuesto firme, clasifiquemos esto como Mejor Escenario. Tu acción: asegurar una llamada de 15 minutos con el CRO esta semana para obtener confirmación verbal. Si lo consigues, lo moveremos a Comprometido el lunes próximo. ¿Suena justo?"
+
+Rep: "Suena bien. Lo configuraré hoy."
+
+[Esto muestra cómo respetuosamente desafiar y coach durante llamadas de previsión mientras se es amable]
+
+` : ''}
+
+LISTA DE VERIFICACIÓN DE CALIDAD:
+✓ Categorías de previsión tienen criterios objetivos
+✓ Agenda is time-boxed and structured
+✓ Every Commit deal gets validation
+✓ Acciones específicas y rastreadas
+✓ Métricas de precisión medidas semanalmente
+✓ Proceso es repetible y escalable
+
+${playbookText ? `\n---\nTACTICAL PLAYBOOKS:\n${playbookText}` : ''}`;
+      }
+      
+      if(mode === 'health'){
+        return `Eres Sergio Aguilar, un experto en pipelines y pronósticos con 10 años de experiencia.
+${baseContext}
+
+TAREA: Crear un marco de análisis de salud de pipeline con indicadores principales y tableros.
+
+MARCO DE ANÁLISIS DE SALUD DE PIPELINE:
+
+1. MÉTRICAS DE COBERTURA
+   - Cobertura total: Pipeline ÷ Cuota restante (objetivo: ${s.pipelineCoverageTarget}x)
+   - Cobertura por etapa (etapa temprana debe ser 5-7x, etapa tardía 2-3x)
+   - Cobertura por rep (identificar brechas)
+   - Cobertura ponderada: (Pipeline × Win %) ÷ Quota (objetivo: 1.5x+)
+
+2. VELOCITY METRICS 
+   - Días en etapa vs. benchmark (por etapa) - Velocidad de conversión de etapa (% de avance a etapa siguiente)
+   - Tiempo de ciclo de negocio: Primer contacto → Cierre
+   - Velocidad de conversión de etapa (% de avance a etapa siguiente)
+   - Tiempo para primera reunión desde prospecto
+   - Días desde última actividad (bandera >7 días)
+
+3. INDICADORES DE CALIDAD
+   - Average deal size vs. target (${s.currency}${s.avgDealSize.toLocaleString()}) - Tamaño promedio de acuerdo vs. objetivo
+   - % of deals with complete MEDDIC
+   - Multi-threading score (# contacts per opp) - Puntuación de multi-threading (# de contactos por oportunidad)
+   - Champion identification rate - Tasa de identificación de campeón
+   - Win rate by stage - Tasa de cierre por etapa
+   - Discount % (should be <15% for healthy deals) - Descuento % (debe ser <15% para acuerdos saludables)
+
+4. SALUD DE ACTIVIDADES
+   - New opportunities created per week (by rep) - Oportunidades nuevas creadas por semana (por rep)
+   - Pipeline generation rate ($ added per week) - Tasa de generación de pipeline ($ agregado por semana)
+   - Meeting/demo completion rate - Tasa de completación de reunión/demo
+   - Proposal delivery rate - Tasa de entrega de propuesta
+   - Contract send rate - Tasa de envío de contrato
+
+5. BANDERAS DE RIESGO (Triggers de alerta automática) 
+   🚨 ALTO RIESGO:
+   - Acuerdo comprometido con no actividad en 5+ días
+   - Acuerdo en etapa >2x duración esperada
+   - Contrato fuera >14 días con no respuesta
+   - Campeón se fue de la empresa
+   - Presupuesto "congelado" o "en revisión"
+   
+   ⚠️ RIESGO MEDIO:
+   - Mejor Escenario con solo 1 contacto
+   - Acuerdo se retrasó fecha de cierre 2+ veces
+   - No acceso al responsable económico en >30 días
+   - Competidor en evaluación final
+   
+   ⚡ NECESITA ATENCIÓN:
+   - Faltan 2+ elementos MEDDIC
+   - No hay próxima reunión programada
+   - Rep no ha actualizado notas en 7+ días
+
+OUTPUT: Crear un tablero de salud de pipeline mostrando:
+✓ Resumen de semáforo (Rojo/Amarillo/Verde) para cada métrica
+✓ Tendencias semana a semana
+✓ Tableros de puntuación por rep
+✓ Top 10 acuerdos de riesgo requiriendo acción
+✓ Recomendaciones de intervención
+
+${playbookText ? `\n---\nTACTICAL PLAYBOOKS:\n${playbookText}` : ''}`;
+      }
+      
+      if(mode === 'coverage'){
+        return `Eres Sergio Aguilar, un experto en pipelines y pronósticos con 10 años de experiencia.
+${baseContext}
+
+TAREA: Crear un marco de análisis de cobertura y velocidad.
+
+ANÁLISIS DE COBERTURA:
+
+1. CALCULAR PIPELINE NECESARIO
+   Fórmula: Cuota restante × Cobertura objetivo × (1 ÷ Tasa de cierre esperada)
+   
+   Ejemplo para rep con:
+   - Cuota trimestral: $500K
+   - Cerrados hasta la fecha: $200K
+   - Restante: $300K
+   - Cobertura objetivo: ${s.pipelineCoverageTarget}x
+   - Tasa de cierre esperada: ${s.winRateTarget}%
+   
+   Pipeline necesario = $300K × ${s.pipelineCoverageTarget} × (1 ÷ 0.${s.winRateTarget}) = ${Math.round(300000 * s.pipelineCoverageTarget / (s.winRateTarget/100)).toLocaleString()}
+
+2. COBERTURA POR SEGMENTO
+   Desglose por:
+   - Etapa (Temprana: 5-7x, Tardía: 2-3x)
+   - Línea de producto
+   - Geografía
+   - Segmento de tamaño de empresa
+   - Rep/equipo
+
+3. BENCHMARKS DE VELOCIDAD
+   Tiempo promedio en cada etapa para acuerdos cerrados:
+   - Prospecting: [X] días
+   - Qualification: [X] días  
+   - Proposal: [X] días
+   - Negotiation: [X] días
+   - Closed Won: Total cycle = ${s.salesCycleLength} días
+
+   Marcar acuerdos que exceden 1.5x benchmark en cualquier etapa.
+
+4. SEGUIMIENTO DE TASA DE GENERACIÓN
+   Monitor weekly:
+   - $ new pipeline created
+   - # new opportunities
+   - Source breakdown (inbound/outbound/partner)
+   - Compare to target generation rate
+
+OUTPUT: Crear un tablero de cobertura y velocidad mostrando:
+✓ Análisis de cobertura por segmento
+✓ Análisis de brechas con plan de acción
+✓ Métricas de velocidad vs. benchmarks
+✓ Tendencias de tasa de generación
+✓ Tablero de puntuación semanal por rep
+
+${playbookText ? `\n---\nTACTICAL PLAYBOOKS:\n${playbookText}` : ''}`;
+      }
+    }
+
+    // TERRITORY & QUOTA - Add similar depth for other agents
+    if(agent === 'territory'){
+      if(mode === 'design'){
+        return `Eres Marco Hernandez, especialista en planificación de territorios y cuotas con 12 años de experiencia en diseñar territorios equilibrados y de datos.
+${baseContext}
+
+TAREA: Diseñar la estructura de territorio óptima para ${company}.
+
+METODOLOGÍA DE DISEÑO DE TERRITORIO:
+
+1. ANÁLISIS DE MERCADO
+   Recopilar y analizar:
+   - Total Addressable Market (TAM) por segmento
+   - Cuenta de cuentas por:
+     * Industria vertical
+     * Tamaño de empresa (empleados, ingresos)
+     * Geografía
+     * Cliente actual vs. prospecto
+   - Datos de rendimiento histórico por segmento
+   - Intensidad competitiva por región
+
+2. ESTRATEGIA DE SEGMENTACIÓN
+   
+   Aproximaciones comunes (elija la mejor adaptación):
+   
+   A) TERRITORIOS GEOGRÁFICOS
+   Pros: Boundaries claras, eficiencia de viaje
+   Cons: Distribución desigual de oportunidades
+   Mejor para: Ventas en campo, empresa de alto contacto
+   
+   B) TERRITORIOS VERTICALES/INDUSTRIALES  
+   Pros: Expertise profunda, mejor mensajería
+   Cons: Geografía dispersa, complejo para socios
+   Mejor para: Soluciones complejas requiriendo expertise en dominio
+   
+   C) TERRITORIOS DE CUENTAS NOMBRADAS
+   Pros: Enfocación estratégica, continuidad de relación
+   Cons: Carga desigual, difícil de equilibrar
+   Mejor para: Empresas con pocas cuentas de alto valor
+   
+   D) MODELO HÍBRIDO
+   Ejemplo: Geográfico para SMB, Nombrado para Enterprise
+   
+   Para ${company} con ${s.salesModel}, recomiendo:
+   [Proporcionar recomendación específica basada en tamaño de acuerdo, ciclo de venta, modelo]
+
+3. CRITERIOS DE CARVING DE TERRITORIO
+   
+   Equilibrar territorios en:
+   
+   OPPORTUNITY (Peso: 40%)
+   - TAM/potential revenue in territory
+   - Número de cuentas objetivo
+   - Tasa de crecimiento de cuentas
+   - Oportunidad de espacio blanco
+   
+   (Carga de trabajo: 30%)
+   - Número de cuentas activas  
+   - Área de cobertura geográfica
+   - Tiempo de viaje requerido
+   - Carga de soporte de cliente
+   
+   HISTORICAL PERFORMANCE (Peso: 20%)
+   - Ingresos pasados del territorio
+   - Tasa de cierre por segmento
+   - Métricas de velocidad de acuerdo
+   
+   FAIRNESS (Peso: 10%) 
+   - Ningún rep debe tener >150% de ventaja vs. promedio
+   - Nuevos territorios reciben consideración de rampa
+   - Factor de familiaridad de cuenta
+
+4. CRITERIOS DE ASIGNACIÓN DE CUENTAS
+   
+   CUENTAS DE ENTERPRISE (>$100K potencial):
+   - Asignadas a reps senior solo
+   - Considerar relaciones existentes
+   - Limitar a 10-20 cuentas nombradas por rep
+   
+   MID-MARKET ($25K-$100K potencial):
+   - Asignadas por reglas de territorio
+   - 30-50 cuentas activas por rep
+   - Pool de 100-200 cuentas prospecto
+   
+   SMB (<$25K potencial):
+   - Equipo de ventas internas
+   - 50-100 cuentas activas por rep
+   - Alta velocidad, menor contacto
+
+5. PLAN DE TRANSICIÓN DE TERRITORIO
+   
+   Cuando se cambia de territorio:
+   - 60-day notice to affected reps
+   - Cuenta de transición checklist
+   - Plan de comunicación de cliente
+   - Compensación durante la transición (3-6 meses)
+   - Sesiones de transferencia de conocimientos
+
+FORMATO DE SALIDA:
+Entregar paquete completo de diseño de territorio:
+✓ Mapa de territorio (visual o spreadsheet)
+✓ Asignación de cuenta por territorio
+✓ Análisis de TAM y oportunidad por territorio
+✓ Scorecard de equilibrio (comparar territorios)
+✓ Plan de transición con cronograma
+✓ Documento de reglas deengagement document
+✓ Métricas de éxito para cada territorio
+
+${showExamples ? `
+
+EJEMPLO DE SCORECARD DE EQUILIBRIO DE TERRITORIO:
+
+Territory | Rep | TAM | Número de cuentas | Tamaño promedio de acuerdo | Ingresos históricos | Scorecard de equilibrio
+----------|-----|-----|---------------|---------------|-------------------|-------------
+Northeast | Sarah J | $5.2M | 145 | $42K | $1.8M | 102 (Equilibrado)
+Southeast | Mike R | $4.8M | 178 | $38K | $1.6M | 98 (Equilibrado)  
+Midwest | Jordan C | $6.1M | 132 | $51K | $2.1M | 108 (Un poco por encima)
+West | Taylor K | $3.9M | 201 | $35K | $1.4M | 89 (Un poco por debajo - necesita ajuste)
+
+Acciones:
+- Mover 25 cuentas de alto valor de Midwest a West
+- Reevaluar límites de territorio West para incluir más cuentas de Enterprise
+- Objetivo de scorecard de equilibrio: 95-105 para todos los territorios (Target balance score: 95-105 for all territories)
+
+` : ''}
+
+${playbookText ? `\n---\nTACTICAL PLAYBOOKS:\n${playbookText}` : ''}`;
+      }
+    }
+
+    // DEAL DESK & PRICING
+    if(agent === 'dealdesk'){
+      if(mode === 'approval'){
+        return `Eres Alejando Muedano, especialista en Deal Desk & Pricing con 9 años de experiencia en estructurar acuerdos complejos.
+${baseContext}
+
+TAREA: Diseñar una matriz de aprobación de descuento y flujo de trabajo para ${company}.
+
+MATRIZ DE APROBACIÓN DE FRAMEWORK:
+
+1. NIVELES DE AUTORIDAD DE DESCUENTO
+
+   Basado en el tamaño del acuerdo de ${s.currency}${s.avgDealSize.toLocaleString()}:
+   
+   LEVEL 1: REP (No se necesita aprobación)
+   - Descuento: 0-5%
+   - Términos de pago estándar (Net 30)
+   - Longitud de contrato estándar (1 año)
+   - Productos a precio de lista solo
+   
+   LEVEL 2: GERENTE DE LINEA DE FRONT
+   - Descuento: 5-15%
+   - Términos de pago: Net 45, pagos trimestrales
+   - Contrato: 1-2 años
+   - Paquetes estándar
+   SLA de aprobación: 24 horas
+   
+   LEVEL 3: DIRECTOR DE VENTAS  
+   - Descuento: 15-25%
+   - Términos de pago: Net 60, pagos anuales prepagados
+   - Contrato: 2-3 años
+   - Paquetes personalizados, programas de prueba
+   SLA de aprobación: 48 horas
+   
+   LEVEL 4: VICEPRESIDENTE DE VENTAS + FINANCE
+   - Descuento: 25-35%
+   - Términos de pago: >Net 60, pagos anuales prepagados
+   - Contrato: 3+ años
+   - Términos no estándar, precios personalizados
+   SLA de aprobación: 72 horas
+   
+   LEVEL 5: CRO + CFO (Comité Ejecutivo)
+   - Descuento: >35%
+   - Solo acuerdos estratégicos
+   - Desviaciones significativas de contrato
+   - Precio de entrada del mercado / leader
+   SLA de aprobación: 1 semana
+
+2. TEMPLATE DE SOLICITUD DE APROBACIÓN
+
+   [SOLICITUD DE APROBACIÓN DE ACUERDO]
+   
+   Nombre del acuerdo: [Nombre de la compaña - Tipo de acuerdo]
+   Rep: [Nombre] | Manager: [Nombre]
+   Fecha de cierre: [Fecha] | Etapa del acuerdo: [Etapa]
+   
+   FINANCIEROS:
+   Precio de lista: $[Amount]
+   Descuento propuesto: [X]% ($[Amount])
+   Precio neto: $[Amount]
+   Longitud del contrato: [X] años
+   Términos de pago: [Términos]
+   TCV (Total Contract Value): $[Amount]
+   ARR (Annual Recurring): $[Amount]
+   
+   JUSTIFICACIÓN DEL NEGOCIO:
+   • Importancia estratégica:: [Por qué este acuerdo es importante] 
+   • Competition: [Estamos competiendo? Quién?]
+   • Customer Budget: [Cuál es su presupuesto aprobado?]
+   • Expansion Potential: [Upsell/cross-sell oportunidades]
+   • Reference Value: [Valor del logo, potencial de caso de estudio]
+   
+   RACIONALIZACIÓN DEL DESCUENTO:
+   [Razón específica para el request de descuento - e.g., competitive displacement,
+    compromiso multi-año, gran número de usuarios, cuenta estratégica, timing de fin de año]
+   
+   FACTORES DE RIESGO:
+   [Cualquier preocupación sobre el pago, términos legales, complejidad de implementación]
+   
+   DESVIACIONES SOLICITADAS:
+   ☐ Descuento >estándar
+   ☐ Términos de pago extendidos  
+   ☐ Lock multi-año
+   ☐ SLA personalizado/soporte
+   ☐ Servicios profesionales incluidos
+   ☐ Otro: [especificar]
+   
+   ADJUNTOS:
+   • Cotización/propuesta firmada
+   • Análisis competitivo (si es aplicable)
+   • Confirmación del comprador económico
+   • Redlines legales (si es aplicable)
+
+3. FLUJO DE TRABAJO DE APROBACIÓN
+
+   Step 1: ENVÍO DEL REP
+   - Enviar vía [CRM/Portal de Deal Desk]
+   - Todos los campos requeridos completos
+   - Documentación de soporte adjunta
+
+   Step 2: REVISIÓN DEL GERENTE (24h SLA)
+   - Validar la justificación del negocio
+   - Confirmar que el MEDDIC está completo
+   - Verificar los acuerdos precedentes
+   - Aprobar / Solicitar cambios / Escalar
+   
+   Step 3: REVISIÓN DEL DIRECTOR (48h SLA si es necesario) 
+   - Revisar el valor estratégico
+   - Confirmar que el precio es defensible  
+   - Verificar el impacto de la margen
+   - Aprobar / Solicitar cambios / Escalar
+   
+   Step 4: REVISIÓN DEL COMITÉ EJECUTIVO (72h+ SLA si es necesario)
+   - Revisar el valor estratégico
+   - Revisar el impacto de la P&L
+   - Verificar la legalidad/cumplimiento
+   - Aprobar finalmente
+   
+   Step 5: EJECUCIÓN DEL DEAL DESK
+   - Generar el contrato aprobado
+   - Actualizar el CRM con los términos
+   - Notificar al rep de la aprobación
+   - Track vs. métricas de aprobación
+
+4. REGLAS DE ENGANCHE DEL DEAL DESK
+
+   ESCENARIOS DE RECHAZO AUTOMÁTICO:
+   ✗ Descuento >35% sin sponsor ejecutivo
+   ✗ Términos de pago >90 días para nuevos clientes
+   ✗ Pilotos gratuitos >90 días
+   ✗ Usuarios ilimitados sin escalado
+   ✗ Custom SLAs beyond our capability
+   
+   REQUIRE REVISIÓN DEL COMITÉ EJECUTIVO:
+   ⚠ Primer acuerdo en un nuevo segmento de mercado
+   ⚠ Acuerdos >$500K TCV
+   ⚠ Compromiso multi-año >3 años
+   ⚠ Organizaciones sin ánimo de lucro/educación >25% de descuento
+   ⚠ Términos IP/datos no estándar
+
+5. MÉTRICAS A TRACKER
+
+   TABLERO SEMANAL:
+   - Volumen de solicitudes de aprobación
+   - Tiempo promedio de aprobación por nivel
+   - Tasa de aprobación (% aprobado vs. rechazado)
+   - Tasa de descuento promedio por tamaño de acuerdo
+   - Acuerdos atascados >SLA
+   
+   ANÁLISIS MENSUAL:
+   - Tasa de cierre por nivel de descuento
+   - Margen por nivel de descuento
+   - Tendencia de descuento (aumentando/disminuyendo?)
+   - Bottlenecks de aprobación
+
+SALIDA:
+✓ Matriz de aprobación completa
+✓ Formulario de solicitud de plantilla
+✓ Diagrama de flujo de trabajo
+✓ Reglas de rechazo automático
+✓ SLAs de aprobación por nivel
+✓ Tablero de métricas
+✓ Guía de entrenamiento para reps
+
+${playbookText ? `\n---\nTACTICAS DE JUEGO:\n${playbookText}` : ''}`;
+      }
+    }
+
+    // CRM & DATA QUALITY
+    if(agent === 'crm'){
+      if(mode === 'hygiene'){
+        return `Eres Carlos Escorza, gerente de CRM & Calidad de Datos con 7 años de experiencia en mantener la excelencia de Salesforce.
+${baseContext}
+
+TAREA: Crear un plan de auditoría y limpieza de datos completo para ${company}.
+
+FRAMEWORK DE CALIDAD DE DATOS:
+
+1. AUDITORÍA DE CAMPOS CRÍTICOS
+
+   Para la metodología ${s.salesMethodology}, también se requiere:
+   ${s.salesMethodology.includes('MEDDIC') ? `
+   ✓ Métricas (resultado empresarial cuantificado)
+   ✓ Comprador Económico (identificado por nombre/título)
+   ✓ Criterios de Decisión (documentados)
+   ✓ Proceso de Decisión (cronograma y stakeholders)
+   ✓ Identify Pain (validated business problem)
+   ✓ Champion (name and confirmation)` : ''}
+   
+   CONTACTO:
+   ✓ Nombre + Apellido (no "Unknown")
+   ✓ Email (formato válido, no rebotes)
+   ✓ Título (desde lista o validado)
+   ✓ Vínculo de cuenta (no contactos huérfanos)
+   ✓ Rol en el acuerdo (Decision Maker/Champion/Influencer/Gatekeeper)
+
+2. REGLAS DE CALIDAD DE DATOS
+
+   REGLAS DE VALIDACIÓN (Prevenir entrada de datos incorrectos):
+   
+   Regla #1: Importe de la oportunidad
+   - No puede ser $0 si la etapa es Propuesta o posterior
+   - Debe estar entre $1,000 y $10,000,000
+   - Avisar si >2x o <0.5x el tamaño promedio de acuerdo
+   
+   Regla #2: Fecha de cierre  
+   - No puede ser en el pasado (a menos que Cerrado)
+   - No puede ser >180 días en el futuro (mover a Pipeline)
+   - Debe alinearse con el calendario fiscal
+   
+   Regla #3: Progresión de etapas
+   - No puede saltar etapas (e.g., Prospecting → Negotiation)
+   - Debe tener actividad registrada antes de avanzar
+   - El compromiso requiere que todos los MEDDIC estén completos
+   
+   Regla #4: Siguientes pasos
+   - No puede ser genérico ("Follow up", "Check in")
+   - Debe incluir fecha: "Programar demo por [fecha]"
+   - Requerido antes de avanzar a la siguiente etapa
+   
+   Regla #5: Vínculo de contacto
+   - La oportunidad debe tener ≥1 contacto
+   - Acuerdos >$50K deben tener ≥2 contactos
+   - Debe tener contacto de comprador económico en la etapa de Propuesta
+
+3. FLUJOS DE LIMPIEZA AUTOMÁTICOS
+
+   FLUJO #1: Limpieza de oportunidades caducadas (Semanal)
+   IF: Oportunidad está abierta
+   AND: Fecha de última actividad >30 días atrás
+   AND: Etapa = Prospecting o Evaluación
+   THEN:  
+   - Enviar alerta al representante
+   - Marcar como "En riesgo - No actividad"
+   - Si no hay respuesta en 7 días, mover a la campaña de "Cuidado"
+   
+   FLUJO #2: Detección de duplicados (Diario)
+   IF: Nueva cuenta creada
+   THEN:
+   - Buscar cuentas existentes con nombre similar (coincidencia difusa)
+   - Alertar al representante si se encuentra un duplicado potencial
+   - Requerir confirmación antes de proceder
+   
+   FLUJO #3: Enfrentamiento de campos faltantes (Al cambiar de etapa)
+   IF: El representante intenta mover la oportunidad a la etapa de Propuesta
+   AND: Campos requeridos incompletos
+   THEN:
+   - Bloquear cambio de etapa
+   - Mostrar checklist de campos faltantes
+   - Proporcionar formulario de completación de campos
+   
+   FLUJO #4: Validación de email (Semanal)
+   - Revisar todos los contactos para emails rebotados
+   - Marcar contactos con email rebotado
+   - Alertar al dueño de la cuenta para actualizar
+
+4. TABLERO DE LIMPIEZA DE DATOS
+
+   Crear tarjeta semanal:
+   
+   SALUD DE LA OPORTUNIDAD:
+   - % de oportunidades con todos los campos requeridos: [X]% (Objetivo: 95%+)
+   - % de oportunidades con datos caducados (>30 días): [X]% (Objetivo: <10%)
+   - % de oportunidades con fechas de cierre realistas: [X]% (Objetivo: 90%+)
+   - Puntuación promedio de calidad de datos: [X]/10 (Objetivo: 8+)
+   
+   SALUD DE LA CUENTA:
+   - # de cuentas duplicadas: [X] (Objetivo: 0)
+   - % de cuentas con información completa: [X]% (Objetivo: 85%+)
+   - % de cuentas con dueño: [X]% (Objetivo: 100%)
+   
+   SALUD DEL CONTACTO:
+   - # de contactos huérfanos (sin cuenta): [X] (Objetivo: 0)
+   - % de contactos con email válido: [X]% (Objetivo: 95%+)
+   - % de contactos con rol definido: [X]% (Objetivo: 80%+)
+   
+   POR TABLERO DE PUNTUACIÓN DEL REP:
+   Rep | Calidad de Oportunidad | Calidad de Cuenta | Calidad de Contacto | Overall
+   ----+-------------+--------------+-----------------+--------
+   Sarah | 94% | 88% | 92% | A (Excelente)
+   Mike | 78% | 81% | 85% | B (Bueno)
+   Jordan | 65% | 72% | 71% | C (Necesita mejorar)
+
+5. PLAN DE CAMPAÑA DE LIMPIEZA
+
+   SEMANA 1-2: LIMPIEZA DE OPORTUNIDADES
+   - Exportar todas las oportunidades abiertas
+   - Marcar registros con campos críticos faltantes
+   - Asignar tareas de limpieza a los reps (máximo 30 por día)
+   - Reunión diaria para revisar el progreso
+   
+   SEMANA 3: DEDUPLICACIÓN DE CUENTAS
+   - Ejecutar herramienta de detección de duplicados
+   - Crear plan de fusión (primario vs. secundario)
+   - Ejecutar fusiones con respaldo de datos
+   - Actualizar registros relacionados
+   
+   SEMANA 4: VALIDACIÓN DE CONTACTOS
+   - Servicio de verificación de email para todos los contactos
+   - Actualizar/eliminar contactos inválidos
+   - Enlazar contactos huérfanos a cuentas
+   - Validar roles de contacto
+   
+   CONTINUO: APLICACIÓN
+   - Habilitar reglas de validación (fase por fase)
+   - Revisión semanal de calidad de datos
+   - Tarjeta semanal de puntuación del rep
+   - Auditoría profunda trimestral
+
+6. GESTIÓN DE CAMBIOS
+
+   CAPACITACIÓN DEL REP:
+   - 30-min de capacitación de calidad de datos (requerido)
+   - Guía rápida de referencia para campos requeridos
+   - "Horas de oficina" para preguntas
+   
+   RESPONSABILIDAD DEL GERENTE:
+   - Incluir calidad de datos en tarjetas de puntuación del rep
+   - Enlazar a revisiones de rendimiento
+   - Revisión semanal de higiene del equipo
+   
+   INCENTIVOS:
+   - Reconocimiento mensual "Campeón de Limpieza de Datos"
+   - Puntos bonus para mantener >90% de puntuación de calidad
+   - Competencia de equipo con premios
+
+SALIDA:
+✓ Completar campos requeridos por objeto
+✓ Reglas de validación (formato de fórmula de Salesforce)
+✓ Especificaciones de flujo de trabajo automatizado
+✓ Mockup del tablero de calidad de datos
+✓ Plan de limpieza de 4 semanas con asignación de tareas
+✓ Materiales de capacitación del rep
+✓ Tarjeta semanal de puntuación
+
+${showExamples ? `
+
+EJEMPLO DE PROBLEMA DE CALIDAD DE DATOS:
+
+ANTES (Datos incorrectos):
+Nombre de la Oportunidad: "Deal"
+Cuenta: [en blanco]
+Importe: $0
+Fecha de cierre: 12/31/2024 (ya pasó)
+Etapa: Negotiation
+Siguiente paso: "follow up"
+Última actividad: 45 días atrás
+Puntuación MEDDIC: 2/6 (incompleta)
+
+DESPUÉS (Datos correctos):
+Nombre de la Oportunidad: "Acme Corp - Enterprise Platform - New Business"
+Cuenta: Acme Corporation (enlazada)
+Importe: $85,000
+Fecha de cierre: 03/31/2025 (realista)
+Etapa: Propuesta (corregida de Negotiation - no listo)
+Siguiente paso: "Deliver ROI business case to CFO by Feb 20"
+Última actividad: 2 días atrás (demo completado)
+Puntuación MEDDIC: 5/6 (Criterios de decisión aún necesarios)
+Contacto principal: Sarah Chen, CRO (Comprador Económico)
+
+` : ''}
+
+${playbookText ? `\n---\nTACTICAS DE JUEGO:\n${playbookText}` : ''}`;
+      }
+    }
+
+    // Add depth to remaining agents following same pattern...
+    // For now, return enhanced base prompt for other modes
+    const personas = {
+      pipeline:{name:"Jordan Chen", role:"Experto en Pipeline & Forecasting", exp:"10 años"},
+      territory:{name:"Marco Hernandez", role:"Experto en Territory & Quota Planning", exp:"12 años"},
+      enablement:{name:"Jazmin Lopez", role:"Líder en Sales Enablement", exp:"8 años"},
+      dealdesk:{name:"Alejando Muedano", role:"Especialista en Deal Desk & Pricing", exp:"9 años"},
+      crm:{name:"Carlos Escorza", role:"Gerente de CRM & Data Quality", exp:"7 años"},
+      compensation:{name:"Rafael Santos", role:"Experto en Compensation Planning", exp:"11 años"},
+      analytics:{name:"Samara Davila", role:"Analista de Ventas & Reporting", exp:"9 años"},
+      process:{name:"Alberto Cruz", role:"Experto en Sales Process & Methodology", exp:"10 años"},
+      revops:{name:"Jaime Gomez", role:"Experto en RevOps & Systems Architect", exp:"8 años"}
+    };
+    
+    const p = personas[agent] || personas.pipeline;
+    
+    return `Eres ${p.name}, un ${p.role} con ${p.exp} de experiencia en operaciones de ventas B2B.
+${baseContext}
+
+TAREA: Crear un deliverable de alta calidad para ${company}.
+
+Como experto, entiendes:
+- Industry best practices and frameworks
+- Cómo balancear insights de datos con ejecución práctica
+- La importancia de la documentación clara y la gestión de cambios
+- Que las operaciones de ventas existen para hacer que el equipo de ventas sea más efectivo
+
+ENFOQUE:
+1. Comienza con el contexto de la empresa y los objetivos
+2. Aplica frameworks y metodologías relevantes
+3. Proporciona recomendaciones específicas y prácticas
+4. Incluye plantillas, ejemplos y pasos de implementación
+5. Define métricas de éxito y cómo rastrearlas
+
+Trabaja paso a paso para producir un deliverable integral que incluye:
+✓ Resumen ejecutivo
+✓ Metodología/framework detallada
+✓ Recomendaciones específicas para ${company}
+✓ Plan de implementación con cronograma
+✓ Plantillas y herramientas necesarias
+✓ Métricas de éxito y enfoque de rastreo
+✓ Errores comunes a evitar
+
+${showExamples ? 'Incluye 2-3 ejemplos específicos relevantes al contexto.' : ''}
+
+${playbookText ? `\n---\nTACTICAS DE JUEGO:\n${playbookText}` : ''}`;
+  }
+
+  function renderPrompts(){
+    const s = currentSettings();
+    ['pipeline','territory','enablement','dealdesk','crm','compensation','analytics','process','revops'].forEach(agent=>{
+      const mode = getVal(agent+'Mode') || 'standard';
+      const showEx = byId(agent+'ShowExamples')?.checked; 
+      const el = byId(agent+'Prompt');
+      if(el) el.textContent = generatePrompt(agent, s, mode, showEx);
+    });
+  }
+
+  function showPage(name){
+    document.querySelectorAll('[id^="page-"]').forEach(p => p.style.display = 'none');
+    const page = byId('page-'+name);
+    if(page) page.style.display = 'block';
+    
+    document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+    const btn = document.querySelector(`.nav button[data-page="${name}"]`);
+    if(btn) btn.classList.add('active');
+  }
+
+  function showTab(panel, tabName){
+    const root = byId('page-'+panel);
+    if(!root) return;
+    root.querySelectorAll('.tab-button').forEach(b=>b.classList.remove('active'));
+    const btn = root.querySelector(`.tab-button[data-tab="${tabName}"]`);
+    if(btn) btn.classList.add('active');
+    root.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+    const content = root.querySelector(`.tab-content[data-tab-content="${tabName}"]`);
+    if(content) content.classList.add('active');
+  }
+
+  function updateWizard(){
+    document.querySelectorAll('.wizard-step').forEach(s=>s.classList.remove('active'));
+    const step = document.querySelector(`.wizard-step[data-step="${wizardStep}"]`);
+    if(step) step.classList.add('active');
+    
+    document.querySelectorAll('.wizard-dot').forEach(d=>{
+      const s = Number(d.getAttribute('data-step'));
+      d.classList.toggle('active', s===wizardStep);
+      d.classList.toggle('complete', s<wizardStep);
+    });
+    
+    const backBtn = byId('wizardBack');
+    if(backBtn) backBtn.style.display = wizardStep>1 ? 'inline-block' : 'none';
+    
+    const nextBtn = byId('wizardNext');
+    if(nextBtn) nextBtn.textContent = wizardStep===3 ? 'Finish' : 'Next';
+  }
+
+  function showWizard(){ 
+    const overlay = byId('wizardOverlay');
+    if(overlay) overlay.classList.add('active'); 
+    updateWizard(); 
+  }
+
+  function hideWizard(){ 
+    const overlay = byId('wizardOverlay');
+    if(overlay) overlay.classList.remove('active'); 
+  }
+
+  function copyToClipboard(targetId){
+    const el = byId(targetId);
+    if(!el || !el.textContent) {
+      alert('Nada para copiar. Genera contenido primero.');
+      return;
+    }
+    
+    const text = el.textContent;
+    
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(()=>{
+        alert('✓ Copiado al portapapeles!');
+      }).catch(()=>{
+        fallbackCopy(text);
+      });
+    } else {
+      fallbackCopy(text);
+    }
+  }
+
+  function fallbackCopy(text){
+    const t = document.createElement('textarea');
+    t.value = text;
+    t.style.position = 'fixed';
+    t.style.opacity = '0';
+    document.body.appendChild(t);
+    t.select();
+    try{
+      document.execCommand('copy');
+      alert('✓ Copiado al portapapeles!');
+    } catch(err) {
+      alert('Copia fallida. Por favor, copie manualmente.');
+    } finally {
+      document.body.removeChild(t);
+    }
+  }
+
+  function buildPipelineBlock(){
+    const block = `PIPELINE REVIEW:
+Team/Segment: ${getVal('pipe_team')||'(not provided)'}
+Period: ${getVal('pipe_period')||'(not provided)'}
+Focus Areas:
+${getVal('pipe_focus')||'(none)'}
+
+Marco de análisis:
+- Cubrimiento por etapa
+- Velocidad de deal y envejecimiento
+- Evaluación de probabilidad de ganancia
+- Factores de riesgo y mitigación`;
+    const el = byId('pipe_block');
+    if(el) el.textContent = block;
+  }
+
+  function exportSettings(){
+    const blob = new Blob([JSON.stringify(currentSettings(),null,2)], {type:"application/json"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'techsinergy_sales_ops_settings.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function importSettings(file){
+    const reader = new FileReader();
+    reader.onload = ()=>{
+      try{
+        const data = JSON.parse(reader.result);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({...DEFAULTS, ...data}));
+        loadSettings();
+        renderAll();
+        alert('¡Configuración cargada exitosamente!');
+      }catch(e){
+        alert('Archivo inválido');
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function resetAll(){
+    if(confirm('¿Restablecer todas las configuraciones a los valores predeterminados?')){
+      localStorage.clear();
+      loadSettings();
+      renderAll();
+      location.reload();
+    }
+  }
+
+  function embedAndDownload(){
+    try{
+      const settings = currentSettings();
+      let htmlString = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      const settingsJson = JSON.stringify(settings, null, 2);
+      htmlString = htmlString.replace(/(<script id="embedded-settings"[^>]*>)([\s\S]*?)(<\/script>)/, `$1\n${settingsJson}\n$3`);
+      const blob = new Blob([htmlString], {type:'text/html;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'techsinergy_sales_ops_universal.html';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      const status = byId('embedStatus');
+      if(status){
+        status.style.display='block';
+        setTimeout(()=>status.style.display='none', 5000);
+      }
+    }catch(err){
+      alert('Error: ' + err.message);
+    }
+  }
+
+  function updateSetupBadge(){
+    const badge = byId('setupBadge');
+    const badgeMobile = byId('setupBadgeMobile');
+    const settings = currentSettings();
+    const required = ['companyName', 'productService', 'industry'];
+    const isComplete = required.every(k => settings[k] && settings[k].trim());
+    if(badge) {
+      badge.textContent = isComplete ? 'Complete' : 'Incomplete';
+      badge.className = 'status-badge ' + (isComplete ? 'complete' : 'incomplete');
+    }
+    if(badgeMobile) {
+      badgeMobile.textContent = isComplete ? 'Complete' : 'Incomplete';
+      badgeMobile.className = 'status-badge ' + (isComplete ? 'complete' : 'incomplete');
+    }
+  }
+
+  function renderAll(){
+    renderIndustryChips();
+    renderPlaybooks();
+    renderPrompts();
+    updateSetupBadge();
+  }
+
+  function toggleMobileMenu(){
+    const menu = byId('mobileMenu');
+    const overlay = byId('mobileMenuOverlay');
+    const hamburger = byId('hamburgerMenu');
+    if(menu && overlay && hamburger){
+      menu.classList.toggle('active');
+      overlay.classList.toggle('active');
+      hamburger.classList.toggle('active');
+      document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+    }
+  }
+  
+  function closeMobileMenu(){
+    const menu = byId('mobileMenu');
+    const overlay = byId('mobileMenuOverlay');
+    const hamburger = byId('hamburgerMenu');
+    if(menu && overlay && hamburger){
+      menu.classList.remove('active');
+      overlay.classList.remove('active');
+      hamburger.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  function handleClick(e){
+    const t = e.target;
+    
+    if(t.id === 'hamburgerMenu' || t.closest('#hamburgerMenu')){
+      toggleMobileMenu();
+      return;
+    }
+    
+    if(t.id === 'mobileMenuClose' || t.closest('#mobileMenuClose')){
+      closeMobileMenu();
+      return;
+    }
+    
+    if(t.closest('#mobileMenuOverlay')){
+      closeMobileMenu();
+      return;
+    }
+    
+    if(t.closest('.nav button') || t.closest('.mobile-nav button')){
+      const btn = t.closest('.nav button') || t.closest('.mobile-nav button');
+      const page = btn.getAttribute('data-page');
+      if(page){
+        showPage(page);
+        closeMobileMenu();
+        const allNavBtns = document.querySelectorAll('.nav button, .mobile-nav button');
+        allNavBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+      return;
+    }
+
+    if(t.closest('.agent-feature')){
+      const card = t.closest('.agent-feature');
+      const agent = card.getAttribute('data-agent');
+      if(agent){
+        showPage('agents');
+        setTimeout(()=>showTab('agents', agent), 50);
+      }
+      return;
+    }
+
+    if(t.closest('.tab-button')){
+      const btn = t.closest('.tab-button');
+      const panel = btn.closest('.panel');
+      if(panel){
+        const panelName = panel.id.replace('page-','');
+        const tab = btn.getAttribute('data-tab');
+        if(tab) showTab(panelName, tab);
+      }
+      return;
+    }
+
+    if(t.closest('.advanced-toggle')){
+      const tog = t.closest('.advanced-toggle');
+      tog.classList.toggle('expanded');
+      const targetId = tog.getAttribute('data-target');
+      const target = byId(targetId);
+      if(target) target.classList.toggle('visible');
+      return;
+    }
+
+    if(t.classList.contains('copy-btn') || t.closest('.copy-btn')){
+      const btn = t.classList.contains('copy-btn') ? t : t.closest('.copy-btn');
+      const targetId = btn.getAttribute('data-target');
+      if(targetId) copyToClipboard(targetId);
+      return;
+    }
+
+    const btnHandlers = {
+      'wizardNext': () => {
+        if(wizardStep<3){
+          wizardStep++;
+          updateWizard();
+        } else {
+          setVal('companyName', getVal('wizard_companyName'));
+          setVal('productService', getVal('wizard_productService'));
+          setVal('avgDealSize', getVal('wizard_avgDealSize'));
+          setVal('salesCycleLength', getVal('wizard_salesCycleLength'));
+          setVal('winRateTarget', getVal('wizard_winRateTarget'));
+          setVal('pipelineCoverageTarget', getVal('wizard_pipelineCoverageTarget'));
+          setVal('quotaPeriod', getVal('wizard_quotaPeriod'));
+          setVal('salesModel', getVal('wizard_salesModel'));
+          if(getVal('wizard_icp')) setVal('icp', getVal('wizard_icp'));
+          if(getVal('wizard_stacks')) setVal('crmSystem', getVal('wizard_stacks').split(';')[0]?.trim());
+          saveSettings();
+          localStorage.setItem(WIZARD_KEY, 'true');
+          hideWizard();
+          renderAll();
+        }
+      },
+      'wizardBack': () => { if(wizardStep>1){ wizardStep--; updateWizard(); } },
+      'wizardSkip': () => { localStorage.setItem(WIZARD_KEY,'true'); hideWizard(); },
+      'btnBuildPlaybookSetup': buildPlaybookOutput,
+      'btnCopyPlaybookSetup': () => copyToClipboard('playbookOutputSetup'),
+      'btnBuildPipeBlock': buildPipelineBlock,
+      'btnCopyPipeBlock': () => copyToClipboard('pipe_block'),
+      'btnExport': exportSettings,
+      'btnReset': resetAll,
+      'btnEmbedDownload': embedAndDownload
+    };
+
+    if(t.id && btnHandlers[t.id]){
+      btnHandlers[t.id]();
+    }
+  }
+
+  function handleChange(e){
+    const t = e.target;
+    if(t.classList.contains('input') || t.type==='checkbox' || t.tagName==='SELECT'){
+      saveSettings();
+      renderPrompts();
+    }
+    if(t.id==='importFile'){
+      const f = t.files?.[0];
+      if(f) importSettings(f);
+    }
+  }
+
+  function bootstrapApp(){
+    if(appHydrated) return;
+
+    loadSettings();
+    renderWizardTemplates();
+    renderAll();
+    showPage('home');
+
+    document.addEventListener('click', handleClick);
+    document.addEventListener('change', handleChange);
+    document.addEventListener('input', e=>{
+      if(e.target.classList.contains('input')){
+        saveSettings();
+        renderPrompts();
+      }
+    });
+
+    if(!localStorage.getItem(WIZARD_KEY)){
+      setTimeout(showWizard, 500);
+    }
+
+    appHydrated = true;
+  }
+
+  async function setupAuth(){
+    registerAuthListeners();
+
+    if(!SUPABASE_URL || SUPABASE_URL.includes('TU_PROYECTO')){
+      console.warn('Configure SUPABASE_URL and SUPABASE_ANON_KEY to enable authentication.');
+      authSession = null;
+      lockApp();
+      setAuthView('signin');
+      showAuthFeedback('Supabase credentials are missing. Update SUPABASE_URL and SUPABASE_ANON_KEY.', true);
+      return;
+    }
+
+    if(typeof window.supabase === 'undefined'){
+      console.error('Supabase library unavailable.');
+      authSession = null;
+      lockApp();
+      showAuthFeedback('Unable to load Supabase client. Check your network connection.', true);
+      return;
+    }
+
+    if(!supabaseClient){
+      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      supabaseClient.auth.onAuthStateChange((_event, session)=>{
+        authSession = session;
+        if(session){
+          unlockApp();
+          updateAuthUI(session);
+          showAuthFeedback('');
+          bootstrapApp();
+        }else{
+          lockApp();
+          setAuthView('signin');
+          showAuthFeedback('');
+        }
+      });
+    }
+
+    const { data, error } = await supabaseClient.auth.getSession();
+    if(error){
+      console.error('Supabase session error:', error);
+      showAuthFeedback(error.message, true);
+      lockApp();
+      return;
+    }
+
+    authSession = data?.session ?? null;
+    if(authSession){
+      unlockApp();
+      updateAuthUI(authSession);
+      showAuthFeedback('');
+      bootstrapApp();
+    }else{
+      lockApp();
+      setAuthView('signin');
+    }
+  }
+
+  async function init(){
+    await setupAuth();
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
