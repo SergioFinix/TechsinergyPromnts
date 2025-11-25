@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Techsinergy | T-prospecto</title>
+<title>Techsinergy | T-Prospecto</title>
 
 <!-- Embedded default settings block (used for Universal Agent embedding) -->
 <script id="embedded-settings" type="application/json">
@@ -160,22 +160,6 @@
   .btn.danger{background:#7f1d1d;border-color:#991b1b}
   .btn.small{padding:6px 10px;font-size:12px}
 
-  body.auth-locked #appShell{display:none;}
-  body.auth-locked #wizardOverlay{display:none!important;}
-  .auth-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:32px;background:rgba(15,10,26,.92);backdrop-filter:blur(14px);z-index:9998;transition:opacity .3s ease,visibility .3s ease;}
-  body:not(.auth-locked) .auth-overlay{opacity:0;visibility:hidden;pointer-events:none;}
-  .auth-card{width:min(420px,100%);background:linear-gradient(180deg,var(--card),var(--card-2));border:1px solid rgba(139,92,246,.35);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:20px;}
-  .auth-card header h2{margin:0;font-size:24px;}
-  .auth-card header p{margin:6px 0 0 0;}
-  .auth-tabs{display:flex;gap:8px;}
-  .auth-tabs .tab-button{flex:1;justify-content:center;}
-  .auth-form{display:none;flex-direction:column;gap:14px;}
-  .auth-form.active{display:flex;}
-  .auth-feedback{display:none;font-size:13px;border-radius:10px;padding:10px 12px;background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.35);}
-  .auth-feedback.error{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.4);}
-  .auth-footer{font-size:12px;color:var(--muted);text-align:center;}
-  #authGate button.disabled,
-  #authGate button:disabled{opacity:.6;cursor:wait;}
 
   .row{display:grid;gap:16px;grid-template-columns:repeat(12,1fr)}
   .col-12{grid-column:span 12}
@@ -266,38 +250,7 @@
   }
 </style>
 </head>
-<body class="auth-locked">
-<div id="authGate" class="auth-overlay">
-  <div class="auth-card">
-    <header>
-      <h2>Techsinergy - T-prospecto</h2>
-      <p class="muted">Crea una cuenta o inicia sesión para continuar.</p>
-    </header>
-    <div class="auth-tabs">
-      <button class="tab-button active" data-auth-tab="signin">Iniciar sesión</button>
-      <button class="tab-button" data-auth-tab="signup">Crear cuenta</button>
-    </div>
-    <form id="authSignInForm" class="auth-form active" data-auth-view="signin" autocomplete="on">
-      <label for="signinEmail">Correo electrónico</label>
-      <input id="signinEmail" type="email" class="input" placeholder="you@company.com" required>
-      <label for="signinPassword">Contraseña</label>
-      <input id="signinPassword" type="password" class="input" placeholder="••••••••" required>
-      <button type="submit" class="btn primary">Iniciar sesión</button>
-    </form>
-    <form id="authSignUpForm" class="auth-form" data-auth-view="signup" autocomplete="on">
-      <label for="signupEmail">Correo electrónico</label>
-      <input id="signupEmail" type="email" class="input" placeholder="you@company.com" required>
-      <label for="signupPassword">Contraseña</label>
-      <input id="signupPassword" type="password" class="input" placeholder="Min 6 characters" required minlength="6">
-      <button type="submit" class="btn primary">Crear cuenta</button>
-    </form>
-    <div id="authFeedback" class="auth-feedback"></div>
-    <div class="auth-footer">
-      <span id="authUserEmail"></span>
-      <button id="authSignOut" class="btn secondary" style="margin-top:12px;display:none;">Cerrar sesión</button>
-    </div>
-  </div>
-</div>
+<body>
 
 <!-- Wizard -->
 <div class="wizard-overlay" id="wizardOverlay">
@@ -384,19 +337,12 @@ Canal/Socios</textarea>
       <div class="brand-header-left">
         <div class="logo-container">
           <div class="logo">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3 18L9 12L13 16L21 8" stroke="#0c1629" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M21 8H15L13 10" stroke="#0c1629" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="3" cy="18" r="2" fill="#0c1629"/>
-              <circle cx="9" cy="12" r="2" fill="#0c1629"/>
-              <circle cx="13" cy="16" r="2" fill="#0c1629"/>
-              <circle cx="21" cy="8" r="2" fill="#0c1629"/>
-            </svg>
+            <img src="https://i.ibb.co/xKjvK4pm/3696-App-Iocn-And-Favicon-02.jpg" alt="Techsinergy Logo" style="width:100%;height:100%;object-fit:contain;border-radius:inherit;">
           </div>
         </div>
         <div class="brand-content">
-        <h1>Techsinergy</h1>
-          <div class="muted">T-prospecto </div>
+          <h1>T-Prospecto</h1>
+          <div class="muted">Power by Techsinergy</div>
       </div>
     </div>
       <div class="hamburger-menu" id="hamburgerMenu">
@@ -468,13 +414,15 @@ Canal/Socios</textarea>
             <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </span> Ayuda
+        </span> Acerca de T-Prospecto
       </button>
     </nav>
     <div class="mobile-menu-footer">
       <div>Funciona offline en el navegador</div>
       <div class="divider"></div>
-      <div class="muted">by <a href="https://techsinergy.net/" target="_blank">Techsinergy</a></div>
+      <div class="muted">Powered by <a href="https://techsinergy.net/" target="_blank">Techsinergy</a></div>
+      <div class="muted">Email: <a href="mailto:plataformas@techsinergy.net?subject=Soporte&body=Hola%2C%20necesito%20ayuda%20con...">plataformas@techsinergy.net</a></div>
+      <div class="muted"> <a href="https://techsinergy.net/" target="_blank">Has click aquí para programemos una cita</a></div>
     </div>
   </div>
 
@@ -698,7 +646,7 @@ Canal/Socios</textarea>
         </div>
       </div>
       <div class="info-box">
-        <h3 style="margin-top:0">¿Qué incluye T-prospecto ?</h3>
+        <h3 style="margin-top:0">¿Qué incluye T-Prospecto ?</h3>
         <ul class="list">
           <li>9 agentes especializados de sales ops con experiencia del mundo real</li>
           <li>Frameworks paso a paso (pronósticos, planificación de territorios, modelos de cuota)</li>
@@ -2144,10 +2092,12 @@ GET /prospects/{id}?include=calls,emails,meetings</pre>
 
     <!-- HELP -->
     <section class="panel" id="page-help" style="display:none">
-      <h2>❓ Ayuda</h2>
+      <h2>Conose a T-Prospecto</h2>
       <div class="card">
-        <h3>Acerca de la T-prospecto </h3>
-        <p>Esta edición proporciona 9 agentes especializados de operaciones de ventas con experiencia del mundo real, ayudantes interactivos, recetas de automatización y guías de integración específicas de plataforma.</p>
+        <h3>Acerca de T-Prospecto </h3>
+        <p>T-Prospecto proporciona un programa completo de aceleración comercial basado en 6 pilares críticos del sistema de ventas B2B: metodología unificada, habilitación comercial, prospección a gran escala, accountability, compensación y contratación. Incluye consultoría estratégica, entrenamiento intensivo, acompañamiento semanal, playbooks accionables y sistemas IA-First diseñados según el proceso de compra de cada cliente.
+        </p>
+        <p>Esta edición de T-Prospecto proporciona 9 agentes especializados de operaciones de ventas con experiencia del mundo real, ayudantes interactivos, recetas de automatización y guías de integración específicas de plataforma.</p>
         <p><strong>Qué hace esto diferente:</strong> Estos agentes incorporan las mejores prácticas de sales ops con pensamiento paso a paso, manuales tácticos para gestión de pipeline, pronósticos, diseño de territorios y más.</p>
       </div>
       <div class="card">
@@ -2168,18 +2118,11 @@ GET /prospects/{id}?include=calls,emails,meetings</pre>
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" crossorigin="anonymous"></script>
 <script>
 (function(){
   'use strict';
 
-  const SUPABASE_URL = 'https://satawflinlqhjqvfzmas.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNhdGF3ZmxpbmxxaGpxdmZ6bWFzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1ODY5MTUwMCwiZXhwIjoyMDc0MjY3NTAwfQ.U0pWE_53-daJHDyMB3DYZuCpDZIcMlBaOIfpAobYub8';
-
-  let supabaseClient = null;
-  let authSession = null;
   let appHydrated = false;
-  let authListenersReady = false;
   
   const STORAGE_KEY = 'sales_ops_settings_ultimate';
   const WIZARD_KEY = 'sales_ops_wizard_complete_ultimate';
@@ -2228,143 +2171,6 @@ GET /prospects/{id}?include=calls,emails,meetings</pre>
     if(el) el.value = v || "";
   };
 
-  function showAuthFeedback(message, isError = false){
-    const feedback = byId('authFeedback');
-    if(!feedback) return;
-    feedback.textContent = message || '';
-    feedback.classList.toggle('error', !!isError);
-    feedback.style.display = message ? 'block' : 'none';
-  }
-
-  function setAuthView(target){
-    const view = target === 'signup' ? 'signup' : 'signin';
-    document.querySelectorAll('[data-auth-tab]').forEach(btn=>{
-      btn.classList.toggle('active', btn.dataset.authTab === view);
-    });
-    document.querySelectorAll('[data-auth-view]').forEach(form=>{
-      form.classList.toggle('active', form.dataset.authView === view);
-    });
-    showAuthFeedback('');
-  }
-
-  function updateAuthUI(session){
-    const emailLabel = byId('authUserEmail');
-    const signOutBtn = byId('authSignOut');
-    if(session){
-      if(emailLabel) emailLabel.textContent = session.user?.email ? `Signed in as ${session.user.email}` : '';
-      if(signOutBtn) signOutBtn.style.display = 'inline-flex';
-    }else{
-      if(emailLabel) emailLabel.textContent = '';
-      if(signOutBtn) signOutBtn.style.display = 'none';
-    }
-  }
-
-  function lockApp(){
-    document.body.classList.add('auth-locked');
-    updateAuthUI(null);
-  }
-
-  function unlockApp(){
-    document.body.classList.remove('auth-locked');
-  }
-
-  function setAuthLoading(isLoading){
-    document.querySelectorAll('#authGate button').forEach(btn=>{
-      if(isLoading){
-        btn.disabled = true;
-        btn.classList.add('disabled');
-      }else{
-        btn.disabled = false;
-        btn.classList.remove('disabled');
-      }
-    });
-  }
-
-  function registerAuthListeners(){
-    if(authListenersReady) return;
-    authListenersReady = true;
-
-    document.querySelectorAll('[data-auth-tab]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        setAuthView(btn.dataset.authTab);
-      });
-    });
-
-    const signInForm = byId('authSignInForm');
-    if(signInForm){
-      signInForm.addEventListener('submit', async evt=>{
-        evt.preventDefault();
-        if(!supabaseClient){
-          showAuthFeedback('Supabase is not configured.', true);
-          return;
-        }
-        const email = byId('signinEmail')?.value.trim();
-        const password = byId('signinPassword')?.value.trim();
-        if(!email || !password){
-          showAuthFeedback('Please provide email and password.', true);
-          return;
-        }
-        setAuthLoading(true);
-        const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
-        setAuthLoading(false);
-        if(error){
-          showAuthFeedback(error.message, true);
-        }else{
-          showAuthFeedback('Welcome back!', false);
-        }
-      });
-    }
-
-    const signUpForm = byId('authSignUpForm');
-    if(signUpForm){
-      signUpForm.addEventListener('submit', async evt=>{
-        evt.preventDefault();
-        if(!supabaseClient){
-          showAuthFeedback('Supabase is not configured.', true);
-          return;
-        }
-        const email = byId('signupEmail')?.value.trim();
-        const password = byId('signupPassword')?.value.trim();
-        if(!email || !password){
-          showAuthFeedback('Please provide email and password.', true);
-          return;
-        }
-        setAuthLoading(true);
-        const { data, error } = await supabaseClient.auth.signUp({
-          email,
-          password,
-          options:{ emailRedirectTo: window.location.origin }
-        });
-        setAuthLoading(false);
-        if(error){
-          showAuthFeedback(error.message, true);
-          return;
-        }
-        if(data?.session){
-          showAuthFeedback('Cuenta creada, has iniciado sesión.', false); 
-        }else{
-          showAuthFeedback('Revisa tu bandeja de entrada para confirmar tu correo electrónico.', false);
-        }
-      });
-    }
-
-    const signOutBtn = byId('authSignOut');
-    if(signOutBtn){
-      signOutBtn.addEventListener('click', async ()=>{
-        if(!supabaseClient) return;
-        setAuthLoading(true);
-        const { error } = await supabaseClient.auth.signOut();
-        setAuthLoading(false);
-        if(error){
-          showAuthFeedback(error.message, true);
-        }else{
-          showAuthFeedback('Session closed.', false);
-        }
-      });
-    }
-
-    setAuthView('signin');
-  }
 
   let wizardStep = 1;
 
@@ -3876,65 +3682,8 @@ Marco de análisis:
     appHydrated = true;
   }
 
-  async function setupAuth(){
-    registerAuthListeners();
-
-    if(!SUPABASE_URL || SUPABASE_URL.includes('TU_PROYECTO')){
-      console.warn('Configure SUPABASE_URL and SUPABASE_ANON_KEY to enable authentication.');
-      authSession = null;
-      lockApp();
-      setAuthView('signin');
-      showAuthFeedback('Supabase credentials are missing. Update SUPABASE_URL and SUPABASE_ANON_KEY.', true);
-      return;
-    }
-
-    if(typeof window.supabase === 'undefined'){
-      console.error('Supabase library unavailable.');
-      authSession = null;
-      lockApp();
-      showAuthFeedback('Unable to load Supabase client. Check your network connection.', true);
-      return;
-    }
-
-    if(!supabaseClient){
-      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      supabaseClient.auth.onAuthStateChange((_event, session)=>{
-        authSession = session;
-        if(session){
-          unlockApp();
-          updateAuthUI(session);
-          showAuthFeedback('');
-          bootstrapApp();
-        }else{
-          lockApp();
-          setAuthView('signin');
-          showAuthFeedback('');
-        }
-      });
-    }
-
-    const { data, error } = await supabaseClient.auth.getSession();
-    if(error){
-      console.error('Supabase session error:', error);
-      showAuthFeedback(error.message, true);
-      lockApp();
-      return;
-    }
-
-    authSession = data?.session ?? null;
-    if(authSession){
-      unlockApp();
-      updateAuthUI(authSession);
-      showAuthFeedback('');
-      bootstrapApp();
-    }else{
-      lockApp();
-      setAuthView('signin');
-    }
-  }
-
-  async function init(){
-    await setupAuth();
+  function init(){
+    bootstrapApp();
   }
 
   if(document.readyState === 'loading'){
